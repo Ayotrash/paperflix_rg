@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/screens/register/register.dart';
 import './choose_gender_view_model.dart';
 
@@ -18,6 +19,7 @@ class ChooseGenderView extends ChooseGenderViewModel {
         backgroundColor: Colors.transparent,
         title: Text(
           "Choose Gender",
+          style: TextStyle(fontFamily: "SFP_Text"),
         ),
       ),
       body: SingleChildScrollView(
@@ -29,62 +31,84 @@ class ChooseGenderView extends ChooseGenderViewModel {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Please choose your gender",
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                "Please choose your gender.",
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "SFP_Text",
+                    fontSize: 16,
+                    letterSpacing: 0.6),
               ),
               SizedBox(height: 25),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  RaisedButton(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    color: Color(0xFFFF8FCF),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Register(
-                                gender: 0,
-                              )),
-                    ),
-                    child: Container(
-                      height: 140,
-                      width: 140,
-                      alignment: Alignment.bottomCenter,
-                      decoration: BoxDecoration(
+                  Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                    RaisedButton(
+                      padding: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
-                      child: SizedBox(
-                        height: 120,
-                        width: 120,
-                        child: Image.asset("assets/girl.png"),
+                      color: Color(0xFFFF8FCF),
+                      onPressed: () => Navigator.push(
+                          context,
+                          NavigationRoute(
+                              enterPage: Register(
+                            gender: 0,
+                          ))),
+                      child: Container(
+                        height: 140,
+                        width: 140,
+                        alignment: Alignment.bottomCenter,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: SizedBox(
+                          height: 120,
+                          width: 120,
+                          child: Image.asset("assets/girl.png"),
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(height: 10),
+                    Text("Female",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "SFP_Text",
+                            fontSize: 15))
+                  ]),
                   SizedBox(width: 15),
-                  RaisedButton(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    color: Color(0xFF6AAFFF),
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Register(
-                                  gender: 1,
-                                ))),
-                    child: Container(
-                      height: 140,
-                      width: 140,
-                      alignment: Alignment.bottomCenter,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: SizedBox(
-                        height: 120,
-                        width: 120,
-                        child: Image.asset("assets/boy.png"),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      RaisedButton(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        color: Color(0xFF6AAFFF),
+                        onPressed: () => Navigator.push(
+                          context,
+                          NavigationRoute(
+                              enterPage: Register(
+                            gender: 1,
+                          ))),
+                        child: Container(
+                          height: 140,
+                          width: 140,
+                          alignment: Alignment.bottomCenter,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15)),
+                          child: SizedBox(
+                            height: 120,
+                            width: 120,
+                            child: Image.asset("assets/boy.png"),
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 10),
+                      Text("Male",
+                          style: TextStyle(
+                              fontFamily: "SFP_Text",
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15))
+                    ],
                   ),
                 ],
               ),
