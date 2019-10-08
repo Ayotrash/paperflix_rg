@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/screens/choose_gender/choose_gender.dart';
 import './authentication_view_model.dart';
 
 class AuthenticationView extends AuthenticationViewModel {
@@ -49,21 +51,27 @@ class AuthenticationView extends AuthenticationViewModel {
                     SizedBox(height: 20),
                     Text(
                       "Make Your CV Easily",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                      style: TextStyle(
+                          fontFamily: "SFP_Text",
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18),
                     ),
                     SizedBox(height: 7),
                     Text(
                       "Paperflix is a CV generator that help you",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                      style: TextStyle(
+                          fontFamily: "SFP_Text",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
                     ),
                     Text(
                       "build CV more easily",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                      style: TextStyle(
+                          fontFamily: "SFP_Text",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
                     ),
                     SizedBox(height: 80),
                     Container(
@@ -72,8 +80,8 @@ class AuthenticationView extends AuthenticationViewModel {
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        onPressed: () =>
-                            Navigator.pushNamed(context, '/ChooseGender'),
+                        onPressed: () => Navigator.push(context,
+                            NavigationRoute(enterPage: ChooseGender())),
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                         color: Color(0xFF2ed573),
@@ -81,6 +89,7 @@ class AuthenticationView extends AuthenticationViewModel {
                         child: Text(
                           "REGISTER",
                           style: TextStyle(
+                              fontFamily: "SFP_Text",
                               letterSpacing: 1,
                               fontSize: 16,
                               fontWeight: FontWeight.w900),
@@ -92,6 +101,7 @@ class AuthenticationView extends AuthenticationViewModel {
                       "or, if you have an account",
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
+                          fontFamily: "SFP_Text",
                           fontSize: 16,
                           color: Color(0xFF2ed573)),
                     ),
@@ -110,6 +120,7 @@ class AuthenticationView extends AuthenticationViewModel {
                           "PLEASE, LOGIN",
                           style: TextStyle(
                               letterSpacing: 1,
+                              fontFamily: "SFP_Text",
                               fontSize: 16,
                               fontWeight: FontWeight.w900),
                         ),
