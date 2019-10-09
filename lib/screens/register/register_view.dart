@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/screens/home/home.dart';
 import './register_view_model.dart';
 
 class RegisterView extends RegisterViewModel {
@@ -20,9 +22,10 @@ class RegisterView extends RegisterViewModel {
             floating: true,
             snap: true,
             backgroundColor: Color(0xFFFAFAFA),
-            title: Text(
-              "Register",
-            ),
+            title: Text("Register",
+                style: TextStyle(
+                  fontFamily: "SFP_Text",
+                )),
           )
         ];
       },
@@ -81,7 +84,9 @@ class RegisterView extends RegisterViewModel {
                       child: Text(
                         "Firstname",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                            fontFamily: "SFP_Text",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     Container(
@@ -103,6 +108,7 @@ class RegisterView extends RegisterViewModel {
                             hintText: "ex. John",
                             hintStyle: TextStyle(
                               fontSize: 14,
+                              fontFamily: "SFP_Text",
                               color: Color(0xFF9D9D9D),
                               fontWeight: FontWeight.w500,
                             ),
@@ -115,7 +121,9 @@ class RegisterView extends RegisterViewModel {
                       child: Text(
                         "Lastname",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                            fontFamily: "SFP_Text",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     Container(
@@ -137,6 +145,7 @@ class RegisterView extends RegisterViewModel {
                             hintText: "ex. Doe",
                             hintStyle: TextStyle(
                               fontSize: 14,
+                              fontFamily: "SFP_Text",
                               color: Color(0xFF9D9D9D),
                               fontWeight: FontWeight.w500,
                             ),
@@ -149,7 +158,9 @@ class RegisterView extends RegisterViewModel {
                       child: Text(
                         "Email",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                            fontFamily: "SFP_Text",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     Container(
@@ -171,6 +182,7 @@ class RegisterView extends RegisterViewModel {
                             fillColor: Color(0xFFced6e0),
                             hintText: "ex. johndoe@gmail.com",
                             hintStyle: TextStyle(
+                              fontFamily: "SFP_Text",
                               fontSize: 14,
                               color: Color(0xFF9D9D9D),
                               fontWeight: FontWeight.w500,
@@ -184,7 +196,9 @@ class RegisterView extends RegisterViewModel {
                       child: Text(
                         "Password",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                            fontFamily: "SFP_Text",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     Container(
@@ -206,6 +220,7 @@ class RegisterView extends RegisterViewModel {
                             fillColor: Color(0xFFced6e0),
                             hintText: "************",
                             hintStyle: TextStyle(
+                              fontFamily: "SFP_Text",
                               fontSize: 14,
                               color: Color(0xFF9D9D9D),
                               fontWeight: FontWeight.w500,
@@ -219,7 +234,9 @@ class RegisterView extends RegisterViewModel {
                       child: Text(
                         "Confirm Password",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w700),
+                            fontFamily: "SFP_Text",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     Container(
@@ -232,6 +249,7 @@ class RegisterView extends RegisterViewModel {
                         child: TextField(
                           style: TextStyle(
                             fontSize: 14,
+                            fontFamily: "SFP_Text",
                             color: Color(0xFF2F3542),
                             fontWeight: FontWeight.w500,
                           ),
@@ -241,6 +259,7 @@ class RegisterView extends RegisterViewModel {
                             hintText: "************",
                             hintStyle: TextStyle(
                               fontSize: 14,
+                              fontFamily: "SFP_Text",
                               color: Color(0xFF9D9D9D),
                               fontWeight: FontWeight.w500,
                             ),
@@ -268,8 +287,10 @@ class RegisterView extends RegisterViewModel {
                         child: RichText(
                       text: new TextSpan(
                         text: 'With register, you agree with our',
-                        style:
-                            TextStyle(fontSize: 13.3, color: Color(0xFF2f3542)),
+                        style: TextStyle(
+                            fontFamily: "SFP_Text",
+                            fontSize: 13.3,
+                            color: Color(0xFF2f3542)),
                         children: <TextSpan>[
                           new TextSpan(
                               text: ' terms & conditions',
@@ -291,13 +312,15 @@ class RegisterView extends RegisterViewModel {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  onPressed: () => Navigator.pushNamed(context, '/Home'),
+                  onPressed: () => Navigator.push(
+                      context, NavigationRoute(enterPage: Home())),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   color: Color(0xFF2ed573),
                   textColor: Colors.white,
                   child: Text(
                     "REGISTER",
                     style: TextStyle(
+                        fontFamily: "SFP_Text",
                         letterSpacing: 1,
                         fontSize: 16,
                         fontWeight: FontWeight.w900),
