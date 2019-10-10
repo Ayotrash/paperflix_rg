@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/screens/choose_gender/choose_gender.dart';
+import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
 import './authentication_view_model.dart';
 
 class AuthenticationView extends AuthenticationViewModel {
@@ -112,7 +113,8 @@ class AuthenticationView extends AuthenticationViewModel {
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                            context, NavigationRoute(enterPage: NewResume())),
                         padding: EdgeInsets.symmetric(vertical: 15),
                         color: Color(0xFF2ed573),
                         textColor: Colors.white,

@@ -28,6 +28,7 @@ dependencies:
   redux_thunk: ^0.2.1
 
   i18n: ^0.9.4
+  moment: ^0.0.1
 
   cached_network_image: ^1.1.1
   image_cropper: ^1.1.0
@@ -88,7 +89,6 @@ flutter:
         - asset: fonts/SF_Compact/SF-Compact-Text-HeavyItalic.otf
           weight: 600
           style: italic
-
   # fonts:
   #   - family: Schyler
   #     fonts:
