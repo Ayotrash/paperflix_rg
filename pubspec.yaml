@@ -28,7 +28,7 @@ dependencies:
   redux_thunk: ^0.2.1
 
   i18n: ^0.9.4
-  moment: ^0.0.1
+  intl: ^0.15.8
 
   cached_network_image: ^1.1.1
   image_cropper: ^1.1.0

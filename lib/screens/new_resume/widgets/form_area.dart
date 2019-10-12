@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class FormText extends StatelessWidget {
+class FormArea extends StatelessWidget {
   final TextEditingController controller;
   final String label, hint;
   final bool question;
+  final int minLines, maxLines;
 
-  FormText({this.controller, this.label, this.question: false, this.hint});
+  FormArea(
+      {this.controller,
+      this.label,
+      this.question: false,
+      this.hint,
+      this.minLines,
+      this.maxLines});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +43,7 @@ class FormText extends StatelessWidget {
         SizedBox(height: 7),
         Container(
             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+            constraints: BoxConstraints(minHeight: 200),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Color(0xFFf1f2f6),
@@ -47,6 +55,10 @@ class FormText extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               controller: controller,
+              // expands: true,
+              minLines: minLines,
+              maxLines: maxLines,
+              keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
                 fillColor: Color(0xFFced6e0),
                 hintText: "$hint",

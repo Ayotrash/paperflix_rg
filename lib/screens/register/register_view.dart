@@ -105,7 +105,7 @@ class RegisterView extends RegisterViewModel {
                           controller: firstnameController,
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
-                            hintText: "ex. John",
+                            hintText: "e.g. John",
                             hintStyle: TextStyle(
                               fontSize: 14,
                               fontFamily: "SFP_Text",
@@ -142,7 +142,7 @@ class RegisterView extends RegisterViewModel {
                           controller: lastnameController,
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
-                            hintText: "ex. Doe",
+                            hintText: "e.g. Doe",
                             hintStyle: TextStyle(
                               fontSize: 14,
                               fontFamily: "SFP_Text",
@@ -180,7 +180,7 @@ class RegisterView extends RegisterViewModel {
                           controller: emailController,
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
-                            hintText: "ex. johndoe@gmail.com",
+                            hintText: "e.g. johndoe@gmail.com",
                             hintStyle: TextStyle(
                               fontFamily: "SFP_Text",
                               fontSize: 14,
