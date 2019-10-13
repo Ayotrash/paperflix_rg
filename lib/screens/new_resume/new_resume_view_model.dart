@@ -2,20 +2,64 @@ import 'package:flutter/material.dart';
 import './new_resume.dart';
 
 abstract class NewResumeViewModel extends State<NewResume> {
+  ScrollController stepScroll = ScrollController();
   int currentStep = 0;
-  List stepper = [
-    {"icon": Icons.person, "name": "Personal\nInformation"},
-    {"icon": Icons.assignment, "name": "Professional\nSummary"},
-    {"icon": Icons.business_center, "name": "Employment\nHistory"},
-    {"icon": Icons.school, "name": "Education"},
-    {"icon": Icons.fitness_center, "name": "Skills"},
-  ];
 
   DateTime selectedBirthDate = DateTime.now();
   DateTime selectedStartDate = DateTime.now();
   DateTime selectedEndDate = DateTime.now();
   bool addEmployment = false;
   bool addEducation = false;
+  bool addSkills = false;
+
+  List levelSkills = [
+    "Beginner",
+    "Easy",
+    "Intermediate",
+    "Experienced",
+    "Master"
+  ];
+
+  List<DropdownMenuItem<String>> dropDownMenuItems;
+  String selectedLevel = "";
+ 
+  List<DropdownMenuItem<String>> getDropDownMenuItems() {
+    List<DropdownMenuItem<String>> items = new List();
+    for (var level in levelSkills) {
+      items.add(new DropdownMenuItem(
+          value: level,
+          child: new Text(
+            level,
+            style: TextStyle(
+                color: Color(0xFF2f3542), fontWeight: FontWeight.bold),
+          )));
+    }
+    return items;
+  }
+
+  void changedDropDownItem(String _selectedLevel) {
+    setState(() {
+      selectedLevel = _selectedLevel;
+    });
+  }
+
+  moveNext() {
+    if (currentStep < 3) {
+      stepScroll.animateTo(stepScroll.offset + 168,
+          curve: Curves.linear, duration: Duration(milliseconds: 500));
+    } else {
+      print("no scroll");
+    }
+  }
+
+  moveBack() {
+    if (currentStep < 4) {
+      stepScroll.animateTo(stepScroll.offset - 168,
+          curve: Curves.linear, duration: Duration(milliseconds: 500));
+    } else {
+      print("no scroll");
+    }
+  }
 
   Future<Null> selectBirthDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -67,19 +111,39 @@ abstract class NewResumeViewModel extends State<NewResume> {
     print(addEducation);
   }
 
-  void changeStep() {
+  void onBtnAddSkills() {
     setState(() {
-      currentStep++;
+      addSkills = !addSkills;
     });
+    print(addSkills);
+  }
+
+  void changeStep() {
+    if (currentStep < 5) {
+      moveNext();
+      setState(() {
+        currentStep++;
+      });
+    } else {
+      print("Current Step : (5) Max");
+    }
   }
 
   void backStep() {
     if (currentStep > 0) {
+      moveBack();
       setState(() {
         currentStep--;
       });
     } else {
       print("Current Step : 0");
     }
+  }
+
+   @override
+  void initState() {
+    dropDownMenuItems = getDropDownMenuItems();
+    selectedLevel = dropDownMenuItems[0].value;
+    super.initState();
   }
 }

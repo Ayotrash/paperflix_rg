@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:paperflix_rg/screens/new_resume/widgets/colors_list.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/single_list.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/form_area.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/form_phone.dart';
@@ -54,61 +55,229 @@ class NewResumeView extends NewResumeViewModel {
                   children: <Widget>[
                     SizedBox(height: 15),
                     Container(
-                      height: 100,
-                      padding: EdgeInsets.only(left: 20),
+                      height: 120,
                       child: ListView(
+                          controller: stepScroll,
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           physics: NeverScrollableScrollPhysics(),
                           children: <Widget>[
+                            SizedBox(width: 15),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
                                     SizedBox(width: 18),
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFF2ed573),
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child: Icon(Icons.person,
-                                          color: Colors.white),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            SizedBox(width: 18),
+                                            Container(
+                                              width: currentStep == 0 ? 60 : 50,
+                                              height:
+                                                  currentStep == 0 ? 60 : 50,
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Icon(Icons.person,
+                                                  size: currentStep == 0
+                                                      ? 33
+                                                      : 22,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                                width: 100,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text("Personal\nInformation",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "SFP_Text",
+                                            )),
+                                      ],
                                     ),
-                                    Container(
-                                        width: 100,
-                                        height: 3,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF2ed573),
-                                        )),
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFF2ed573),
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child: Icon(Icons.assignment,
-                                          color: Colors.white),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            Container(
+                                                width: 20,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                            Container(
+                                              width: currentStep == 1 ? 60 : 50,
+                                              height:
+                                                  currentStep == 1 ? 60 : 50,
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Icon(Icons.assignment,
+                                                  size: currentStep == 1
+                                                      ? 33
+                                                      : 22,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                                width: 100,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text("Professional\nSummary",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "SFP_Text",
+                                            )),
+                                      ],
                                     ),
-                                    Container(
-                                        width: 100,
-                                        height: 3,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF2ed573),
-                                        ))
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(children: <Widget>[
+                                            Container(
+                                                width: 22,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                            Container(
+                                              width: currentStep == 2 ? 60 : 50,
+                                              height:
+                                                  currentStep == 2 ? 60 : 50,
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Icon(Icons.business_center,
+                                                  size: currentStep == 2
+                                                      ? 33
+                                                      : 22,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                                width: 100,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Text("Employment\nHistory",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                                fontFamily: "SFP_Text",
+                                              )),
+                                        ]),
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(children: <Widget>[
+                                            Container(
+                                                width: 13,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                            Container(
+                                              width: currentStep == 3 ? 60 : 50,
+                                              height:
+                                                  currentStep == 3 ? 60 : 50,
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Icon(Icons.school,
+                                                  size: currentStep == 3
+                                                      ? 33
+                                                      : 22,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                                width: 100,
+                                                height: 3,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                )),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Text("Education",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                                fontFamily: "SFP_Text",
+                                              )),
+                                          SizedBox(height: 19),
+                                        ]),
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(children: <Widget>[
+                                            Container(
+                                              width: currentStep == 4 ? 60 : 50,
+                                              height:
+                                                  currentStep == 4 ? 60 : 50,
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xFF2ed573),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Icon(Icons.fitness_center,
+                                                  size: currentStep == 4
+                                                      ? 33
+                                                      : 22,
+                                                  color: Colors.white),
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Row(
+                                            children: <Widget>[
+                                              SizedBox(width: 5),
+                                              Text("Skills",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontFamily: "SFP_Text",
+                                                  )),
+                                            ],
+                                          ),
+                                          SizedBox(height: 19),
+                                        ]),
+                                    SizedBox(width: 20),
                                   ],
                                 ),
-                                SizedBox(height: 10),
-                                Text("Personal\nInformation",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "SFP_Text",
-                                    )),
                               ],
                             )
                           ]),
@@ -599,7 +768,84 @@ class NewResumeView extends NewResumeViewModel {
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[])),
+                              children: <Widget>[
+                                !addEducation
+                                    ? ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: 3,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, i) {
+                                          return ColorsList(
+                                            value: "Node JS",
+                                            subvalue: "Advanced",
+                                            color: 0xFFff4757,
+                                          );
+                                        },
+                                      )
+                                    : Container(
+                                        width: screenSize.width,
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              FormText(
+                                                label: "Type Skill",
+                                                hint: "e.g. Design Graphics",
+                                              ),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "Level Skill",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 13,
+                                                    color: Color(0xFF2f3542)),
+                                              ),
+                                              SizedBox(height: 7),
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 20),
+                                                width: screenSize.width,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFFf1f2f6),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child: new DropdownButton(
+                                                    value: selectedLevel,
+                                                    items: dropDownMenuItems,
+                                                    onChanged:
+                                                        changedDropDownItem,
+                                                  ),
+                                                ),
+                                              )
+                                            ])),
+                                addSkills
+                                    ? SizedBox(height: 20)
+                                    : SizedBox(height: 10),
+                                Center(
+                                  child: RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                    onPressed: () => onBtnAddEducation(),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 20),
+                                    color: Color(0xFF2ed573),
+                                    textColor: Colors.white,
+                                    child: Text(
+                                      "+ Add Skills",
+                                      style: TextStyle(
+                                          fontFamily: "SFP_Text",
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 70)
+                              ])),
                   ]),
             ),
           ),
