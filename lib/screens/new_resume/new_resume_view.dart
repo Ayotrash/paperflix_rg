@@ -725,7 +725,7 @@ class NewResumeView extends NewResumeViewModel {
                                       color: Color(0xFF2ed573),
                                       textColor: Colors.white,
                                       child: Text(
-                                        "+ ${AppTranslations.of(context).text("skip")} ${AppTranslations.of(context).text("Education")}",
+                                        "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education")}",
                                         style: TextStyle(
                                             fontFamily: "SFP_Text",
                                             fontSize: 16,

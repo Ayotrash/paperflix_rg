@@ -33,6 +33,7 @@ class _AddCVState extends State<AddCV> {
             SizedBox(height: 10),
             Text(
               "${AppTranslations.of(context).text("add-cv-style")}",
+              textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: "SFP_Text",

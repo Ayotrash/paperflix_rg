@@ -82,7 +82,7 @@ class _CVCardState extends State<CVCard> {
                             ),
                             SizedBox(height: 3),
                             Text(
-                              "${AppTranslations.of(context).text("last-updated")}${widget.lastUpdate}",
+                              "${AppTranslations.of(context).text("last-updated")} ${widget.lastUpdate}",
                               style: TextStyle(
                                   fontFamily: "SFP_Text", fontSize: 12),
                             ),

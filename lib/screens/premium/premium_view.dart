@@ -21,7 +21,8 @@ class PremiumView extends PremiumViewModel {
               floating: true,
               snap: true,
               backgroundColor: Color(0xFFFAFAFA),
-              title: Text("${AppTranslations.of(context).text("upgrade-to-premium")}",
+              title: Text(
+                  "${AppTranslations.of(context).text("upgrade-to-premium")}",
                   style: TextStyle(
                     fontFamily: "SFP_Text",
                   )),
@@ -119,7 +120,7 @@ class PremiumView extends PremiumViewModel {
                                         SizedBox(width: 10),
                                         Expanded(
                                           child: Text(
-                                            "${AppTranslations.of(context).text("get-all-access-template")}",
+                                            "${AppTranslations.of(context).text("get-access")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontSize: 15,
@@ -169,7 +170,8 @@ class PremiumView extends PremiumViewModel {
                                           fontWeight: FontWeight.w700,
                                           fontSize: 18,
                                           decoration:
-                                              TextDecoration.lineThrough, decorationThickness: 2),
+                                              TextDecoration.lineThrough,
+                                          decorationThickness: 2),
                                     ),
                                     Text(
                                       " \$2",
