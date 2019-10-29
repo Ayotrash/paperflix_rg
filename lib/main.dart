@@ -70,3 +70,6 @@ class _MainAppState extends State<MainApp> {
     );
   }
 }
+
+//How to Use Language:
+//e.g. ${AppTranslations.of(context).text("title_home")}
