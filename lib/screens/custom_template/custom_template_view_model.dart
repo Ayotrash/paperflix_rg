@@ -14,12 +14,12 @@ abstract class CustomTemplateViewModel extends State<CustomTemplate> {
   int colorSelected = 0xFF1e90ff;
 
   List<DropdownMenuItem<String>> dropDownMenuItems;
-  String currentCity;
+  String currentFont;
 
   @override
   void initState() {
     dropDownMenuItems = getDropDownMenuItems();
-    currentCity = dropDownMenuItems[0].value;
+    currentFont = dropDownMenuItems[0].value;
     super.initState();
   }
 
@@ -44,9 +44,9 @@ abstract class CustomTemplateViewModel extends State<CustomTemplate> {
     return items;
   }
 
-  void changedDropDownItem(String selectedCity) {
+  void changedDropDownItem(String selectedFont) {
     setState(() {
-      currentCity = selectedCity;
+      currentFont = selectedFont;
     });
   }
 }

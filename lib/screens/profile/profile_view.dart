@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/profile/wigets/colors_list.dart';
 import 'package:paperflix_rg/screens/profile/wigets/custom_chip.dart';
 import 'package:paperflix_rg/screens/profile/wigets/single_form.dart';
@@ -25,7 +26,7 @@ class ProfileView extends ProfileViewModel {
               floating: true,
               snap: true,
               backgroundColor: Color(0xFFFAFAFA),
-              title: Text("Your Profile",
+              title: Text("${AppTranslations.of(context).text("your-profile")}",
                   style: TextStyle(
                     fontFamily: "SFP_Text",
                   )),
@@ -72,7 +73,7 @@ class ProfileView extends ProfileViewModel {
                                       ),
                                       SizedBox(width: 3),
                                       Text(
-                                        "Edit",
+                                        "${AppTranslations.of(context).text("edit")}",
                                         style: TextStyle(
                                           fontFamily: "SFP_Text",
                                           fontWeight: FontWeight.w700,
@@ -85,7 +86,7 @@ class ProfileView extends ProfileViewModel {
                             ),
                             SizedBox(height: 30),
                             Text(
-                              "Info",
+                              "${AppTranslations.of(context).text("personal-info-v2")}",
                               style: TextStyle(
                                   fontFamily: "SFP_Text",
                                   fontWeight: FontWeight.w900,
@@ -93,36 +94,36 @@ class ProfileView extends ProfileViewModel {
                                   color: Color(0xFF2f3542)),
                             ),
                             SingleForm(
-                              label: "Full Name",
+                              label: "${AppTranslations.of(context).text("full-name")}",
                               value: "Arsyad Sukma Ramadhan",
                             ),
                             SingleForm(
-                              label: "Gender",
+                              label: "${AppTranslations.of(context).text("gender")}",
                               value: "Male",
                             ),
                             SingleForm(
-                              label: "Email",
+                              label: "${AppTranslations.of(context).text("email")}",
                               value: "blacklistdark1987@gmail.com",
                             ),
                             SingleForm(
-                              label: "Birth of Date",
+                              label: "${AppTranslations.of(context).text("birth-date")}",
                               value: "30 Desember 2000",
                             ),
                             SingleForm(
-                              label: "Place of Birth",
+                              label: "${AppTranslations.of(context).text("place-of-birth")}",
                               value: "Malang, Indonesia",
                             ),
                             SingleForm(
-                              label: "Phone Number",
+                              label: "${AppTranslations.of(context).text("phone-number")}",
                               value: "+62 812 8486 4756",
                             ),
                             SingleForm(
-                              label: "Job Title",
+                              label: "${AppTranslations.of(context).text("job-title")}",
                               value: "Royal Programmer",
                             ),
                             SizedBox(height: 30),
                             Text(
-                              "Additional Info",
+                              "${AppTranslations.of(context).text("additional-info")}",
                               style: TextStyle(
                                   fontFamily: "SFP_Text",
                                   fontWeight: FontWeight.w900,
@@ -130,24 +131,24 @@ class ProfileView extends ProfileViewModel {
                                   color: Color(0xFF2f3542)),
                             ),
                             SingleForm(
-                              label: "Country",
+                              label: "${AppTranslations.of(context).text("country")}",
                               value: "Indonesia",
                             ),
                             SingleForm(
-                              label: "City",
+                              label: "${AppTranslations.of(context).text("city")}",
                               value: "DKI Jakarta",
                             ),
                             SingleForm(
-                              label: "Address",
+                              label: "${AppTranslations.of(context).text("address")}",
                               value:
                                   "Perum Asrikaton Blok G3/8. Pakis, Kab. Malang",
                             ),
                             SingleForm(
-                              label: "Nationality",
+                              label: "${AppTranslations.of(context).text("nationality")}",
                               value: "Indonesian",
                             ),
                             SingleForm(
-                              label: "Driving Licenses",
+                              label: "${AppTranslations.of(context).text("driving-licenses")}",
                               value: "Indonesia",
                             ),
                           ],
@@ -236,7 +237,7 @@ class ProfileView extends ProfileViewModel {
                                       ),
                                       SizedBox(width: 3),
                                       Text(
-                                        "Edit",
+                                        "${AppTranslations.of(context).text("edit")}",
                                         style: TextStyle(
                                           fontFamily: "SFP_Text",
                                           fontWeight: FontWeight.w700,
@@ -248,7 +249,7 @@ class ProfileView extends ProfileViewModel {
                               ],
                             ),
                             Text(
-                              "Professional Summary",
+                              "${AppTranslations.of(context).text("professional-summary-v2")}",
                               style: TextStyle(
                                   fontFamily: "SFP_Text",
                                   fontWeight: FontWeight.w900,
@@ -256,7 +257,7 @@ class ProfileView extends ProfileViewModel {
                                   color: Color(0xFF2f3542)),
                             ),
                             SingleForm(
-                              label: "About You",
+                              label: "${AppTranslations.of(context).text("about-you")}",
                               value:
                                   "\"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci unde beatae quasi possimus quisquam magni hic pariatur temporibus! Quis quaerat quos ipsam voluptatum nemo, enim maxime sed autem quae? Eum corporis, error cum ad aliquam in molestias deserunt perspiciatis.\"",
                             ),
@@ -270,7 +271,7 @@ class ProfileView extends ProfileViewModel {
                                 textColor: Color(0xFF747d8c),
                                 onPressed: () {},
                                 child: Text(
-                                  "See More",
+                                  "${AppTranslations.of(context).text("see-more")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w700,
@@ -314,7 +315,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -326,7 +327,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Employment History",
+                                  "${AppTranslations.of(context).text("employment-history-v2")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -337,12 +338,12 @@ class ProfileView extends ProfileViewModel {
                                 SingleList(
                                   icon: Icons.work,
                                   value: "Software Engineer at Paperflix",
-                                  subvalue: "Feb 2019 - Present",
+                                  subvalue: "Feb 2019 - ${AppTranslations.of(context).text("present")}",
                                 ),
                                 SingleList(
                                   icon: Icons.work,
                                   value: "PRO Gamers at Nextbyte",
-                                  subvalue: "Feb 2019 - Present",
+                                  subvalue: "Feb 2019 - ${AppTranslations.of(context).text("present")}",
                                 ),
                                 SizedBox(height: 20)
                               ])),
@@ -360,7 +361,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Employment",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("employment")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -405,7 +406,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -417,7 +418,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Education",
+                                  "${AppTranslations.of(context).text("education")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -428,7 +429,7 @@ class ProfileView extends ProfileViewModel {
                                 SingleList(
                                   icon: Icons.school,
                                   value: "E-Sport at ITB",
-                                  subvalue: "Feb 2018 - Present",
+                                  subvalue: "Feb 2018 - ${AppTranslations.of(context).text("present")}",
                                 ),
                                 SingleList(
                                   icon: Icons.school,
@@ -451,7 +452,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Education",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -496,7 +497,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -508,7 +509,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Skills",
+                                  "${AppTranslations.of(context).text("skills")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -552,7 +553,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Skill",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -597,7 +598,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -609,7 +610,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Out-school Activities",
+                                  "${AppTranslations.of(context).text("out-school-activities")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -643,7 +644,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Activities",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("activities")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -688,7 +689,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -700,7 +701,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Languages",
+                                  "${AppTranslations.of(context).text("edit")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -710,11 +711,11 @@ class ProfileView extends ProfileViewModel {
                                 SizedBox(height: 15),
                                 SingleList(
                                   value: "English",
-                                  subvalue: "Very Good",
+                                  subvalue: "${AppTranslations.of(context).text("conversational")}",
                                 ),
                                 SingleList(
                                   value: "Indonesia",
-                                  subvalue: "Native",
+                                  subvalue: "${AppTranslations.of(context).text("native")}",
                                 ),
                                 SizedBox(height: 20)
                               ])),
@@ -732,7 +733,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Language",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("language")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -777,7 +778,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -789,7 +790,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Hobby",
+                                  "${AppTranslations.of(context).text("hobby")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -821,7 +822,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Hobby",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("hobby")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -866,7 +867,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -908,7 +909,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Reference",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("references")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -953,7 +954,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -965,7 +966,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Courses",
+                                  "${AppTranslations.of(context).text("courses")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -999,7 +1000,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Course",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("courses")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -1044,7 +1045,7 @@ class ProfileView extends ProfileViewModel {
                                           ),
                                           SizedBox(width: 3),
                                           Text(
-                                            "Edit",
+                                            "${AppTranslations.of(context).text("edit")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontWeight: FontWeight.w700,
@@ -1056,7 +1057,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "Website & Socials",
+                                  "${AppTranslations.of(context).text("web-and-socials")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -1100,7 +1101,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ Add Social",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("socials")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,

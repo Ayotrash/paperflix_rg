@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 
 class SingleList extends StatefulWidget {
   final String value, time, subvalue;
@@ -78,7 +79,7 @@ class _SingleListState extends State<SingleList> {
               ),
               SizedBox(width: 3),
               Text(
-                "Delete",
+                "${AppTranslations.of(context).text("delete")}",
                 style: TextStyle(
                   fontFamily: "SFP_Text",
                   fontSize: 13,

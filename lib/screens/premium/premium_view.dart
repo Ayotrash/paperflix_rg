@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import './premium_view_model.dart';
 
 class PremiumView extends PremiumViewModel {
@@ -20,7 +21,7 @@ class PremiumView extends PremiumViewModel {
               floating: true,
               snap: true,
               backgroundColor: Color(0xFFFAFAFA),
-              title: Text("Upgrade to Premium",
+              title: Text("${AppTranslations.of(context).text("upgrade-to-premium")}",
                   style: TextStyle(
                     fontFamily: "SFP_Text",
                   )),
@@ -60,7 +61,7 @@ class PremiumView extends PremiumViewModel {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    "Premium Plan",
+                                    "${AppTranslations.of(context).text("premium-plan")}",
                                     style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w700,
@@ -76,7 +77,7 @@ class PremiumView extends PremiumViewModel {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      "What you can get?",
+                                      "${AppTranslations.of(context).text("what-you-can-get")}",
                                       style: TextStyle(
                                         fontFamily: "SFP_Text",
                                         fontWeight: FontWeight.w700,
@@ -96,7 +97,7 @@ class PremiumView extends PremiumViewModel {
                                         SizedBox(width: 10),
                                         Expanded(
                                           child: Text(
-                                            "Avoiding Paperflix watermark on your resume.",
+                                            "${AppTranslations.of(context).text("avoiding-watermark")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontSize: 15,
@@ -118,7 +119,7 @@ class PremiumView extends PremiumViewModel {
                                         SizedBox(width: 10),
                                         Expanded(
                                           child: Text(
-                                            "Get all access to our best templates.",
+                                            "${AppTranslations.of(context).text("get-all-access-template")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontSize: 15,
@@ -140,7 +141,7 @@ class PremiumView extends PremiumViewModel {
                                         SizedBox(width: 10),
                                         Expanded(
                                           child: Text(
-                                            "Avoiding all advertising on the app.",
+                                            "${AppTranslations.of(context).text("avoiding-advertising")}",
                                             style: TextStyle(
                                               fontFamily: "SFP_Text",
                                               fontSize: 15,
@@ -168,7 +169,7 @@ class PremiumView extends PremiumViewModel {
                                           fontWeight: FontWeight.w700,
                                           fontSize: 18,
                                           decoration:
-                                              TextDecoration.lineThrough),
+                                              TextDecoration.lineThrough, decorationThickness: 2),
                                     ),
                                     Text(
                                       " \$2",
@@ -182,7 +183,7 @@ class PremiumView extends PremiumViewModel {
                                 ),
                               ),
                               Text(
-                                "per week",
+                                "${AppTranslations.of(context).text("per-week")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontWeight: FontWeight.w700,
@@ -211,7 +212,7 @@ class PremiumView extends PremiumViewModel {
                               color: Color(0xFF2ed573),
                               textColor: Colors.white,
                               child: Text(
-                                "UPGRADE NOW",
+                                "${AppTranslations.of(context).text("upgrade-now").toUpperCase()}",
                                 style: TextStyle(
                                     letterSpacing: 0.6,
                                     fontFamily: "SFP_Text",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/register/register.dart';
 import './choose_gender_view_model.dart';
 
@@ -18,7 +19,7 @@ class ChooseGenderView extends ChooseGenderViewModel {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          "Choose Gender",
+          "${AppTranslations.of(context).text("choose-gender")}",
           style: TextStyle(fontFamily: "SFP_Text"),
         ),
       ),
@@ -31,7 +32,7 @@ class ChooseGenderView extends ChooseGenderViewModel {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Please choose your gender.",
+                "${AppTranslations.of(context).text("please-choose-gender")}",
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontFamily: "SFP_Text",
@@ -68,7 +69,7 @@ class ChooseGenderView extends ChooseGenderViewModel {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text("Female",
+                    Text("${AppTranslations.of(context).text("female")}",
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontFamily: "SFP_Text",
@@ -84,11 +85,11 @@ class ChooseGenderView extends ChooseGenderViewModel {
                             borderRadius: BorderRadius.circular(15)),
                         color: Color(0xFF6AAFFF),
                         onPressed: () => Navigator.push(
-                          context,
-                          NavigationRoute(
-                              enterPage: Register(
-                            gender: 1,
-                          ))),
+                            context,
+                            NavigationRoute(
+                                enterPage: Register(
+                              gender: 1,
+                            ))),
                         child: Container(
                           height: 140,
                           width: 140,
@@ -103,7 +104,7 @@ class ChooseGenderView extends ChooseGenderViewModel {
                         ),
                       ),
                       SizedBox(height: 10),
-                      Text("Male",
+                      Text("${AppTranslations.of(context).text("male")}",
                           style: TextStyle(
                               fontFamily: "SFP_Text",
                               fontWeight: FontWeight.w700,

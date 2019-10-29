@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/choose_template/choose_template.dart';
 
 class AddCV extends StatefulWidget {
@@ -31,7 +32,7 @@ class _AddCVState extends State<AddCV> {
             ),
             SizedBox(height: 10),
             Text(
-              "Add CV Style",
+              "${AppTranslations.of(context).text("add-cv-style")}",
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: "SFP_Text",

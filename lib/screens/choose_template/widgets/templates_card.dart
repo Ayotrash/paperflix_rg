@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/custom_template/custom_template.dart';
 
 class TemplatesCard extends StatefulWidget {
@@ -89,7 +90,7 @@ class _TemplatesCardState extends State<TemplatesCard> {
                   ),
                   SizedBox(width: 5),
                   Text(
-                    "PREMIUM",
+                    "${AppTranslations.of(context).text("premium").toUpperCase()}",
                     style: TextStyle(
                         color: Color(0xFFFF9D3B),
                         fontWeight: FontWeight.w700,
@@ -99,7 +100,7 @@ class _TemplatesCardState extends State<TemplatesCard> {
                 ],
               )
             : Text(
-                "FREE",
+                "${AppTranslations.of(context).text("free").toUpperCase()}",
                 style: TextStyle(
                     color: Color(0xFF2ed573),
                     fontWeight: FontWeight.w700,

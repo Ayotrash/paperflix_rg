@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 
 class FormPhone extends StatefulWidget {
   final TextEditingController controller;
@@ -118,7 +119,7 @@ class _FormPhoneState extends State<FormPhone> {
         Row(
           children: <Widget>[
             Text(
-              "Country code: ",
+              "${AppTranslations.of(context).text("country-code")}: ",
               style: TextStyle(
                   fontFamily: "SFP_Text",
                   fontWeight: FontWeight.w400,

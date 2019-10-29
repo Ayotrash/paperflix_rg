@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/choose_template/widgets/templates_card.dart';
 import './choose_template_view_model.dart';
 
@@ -21,7 +22,7 @@ class ChooseTemplateView extends ChooseTemplateViewModel {
               floating: true,
               snap: true,
               backgroundColor: Color(0xFFFAFAFA),
-              title: Text("Choose Your Template",
+              title: Text("${AppTranslations.of(context).text("choose-template")}",
                   style: TextStyle(
                     fontFamily: "SFP_Text",
                   )),

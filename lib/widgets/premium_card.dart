@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/premium/premium.dart';
 
 class PremiumCard extends StatefulWidget {
@@ -44,7 +45,7 @@ class _PremiumCardState extends State<PremiumCard> {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        "Upgrade to Premium Plan",
+                        "${AppTranslations.of(context).text("upgrade-to-premium-plan")}",
                         style: TextStyle(
                           fontFamily: "SFP_Text",
                           fontWeight: FontWeight.w700,
@@ -55,7 +56,7 @@ class _PremiumCardState extends State<PremiumCard> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    "Get access to many template and without ads",
+                    "${AppTranslations.of(context).text("get-access")}",
                     style: TextStyle(
                         fontFamily: "SFP_Text",
                         letterSpacing: 0.5,
@@ -73,12 +74,12 @@ class _PremiumCardState extends State<PremiumCard> {
                             new TextSpan(
                                 text: '\$5 ',
                                 style: TextStyle(
-                                    decoration: TextDecoration.lineThrough)),
+                                    decoration: TextDecoration.lineThrough, decorationThickness: 2)),
                             new TextSpan(
                                 text: '\$2',
                                 style:
                                     new TextStyle(fontWeight: FontWeight.bold)),
-                            new TextSpan(text: ' / week'),
+                            new TextSpan(text: ' / ${AppTranslations.of(context).text("week")}'),
                           ],
                         ),
                       )

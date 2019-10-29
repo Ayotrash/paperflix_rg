@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 
 class CVCard extends StatefulWidget {
   final String image, name, lastUpdate;
@@ -81,7 +82,7 @@ class _CVCardState extends State<CVCard> {
                             ),
                             SizedBox(height: 3),
                             Text(
-                              "${widget.lastUpdate}",
+                              "${AppTranslations.of(context).text("last-updated")}${widget.lastUpdate}",
                               style: TextStyle(
                                   fontFamily: "SFP_Text", fontSize: 12),
                             ),

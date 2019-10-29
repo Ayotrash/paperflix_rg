@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/home/widgets/add_cv.dart';
 import 'package:paperflix_rg/screens/home/widgets/cv_card.dart';
 import 'package:paperflix_rg/screens/profile/profile.dart';
@@ -44,7 +45,7 @@ class HomeView extends HomeViewModel {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Hi, Arsyad",
+                            "${AppTranslations.of(context).text("hi")}, Arsyad",
                             style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontFamily: "SFP_Text",
@@ -52,7 +53,7 @@ class HomeView extends HomeViewModel {
                                 color: Color(0xFF2f3542)),
                           ),
                           Text(
-                            "Edit your profile",
+                            "${AppTranslations.of(context).text("edit-profile")}",
                             style: TextStyle(
                                 letterSpacing: 0.5,
                                 fontFamily: "SFP_Text",
@@ -89,7 +90,7 @@ class HomeView extends HomeViewModel {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Created Resume",
+                            "${AppTranslations.of(context).text("create-resume1")}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontFamily: "SFP_Text",
@@ -97,7 +98,7 @@ class HomeView extends HomeViewModel {
                                 color: Color(0xFF2f3542)),
                           ),
                           Text(
-                            "Create your resume with many template in a easily way",
+                            "${AppTranslations.of(context).text("create-resume2")}",
                             style: TextStyle(
                                 letterSpacing: 0.5,
                                 fontFamily: "SFP_Text",
@@ -122,7 +123,7 @@ class HomeView extends HomeViewModel {
                             name: "CV Name",
                             image:
                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9KOdr0S58vCH0TqAx48mBxzWsPK_Sxd9qt4uzu_eJkkUgg48h",
-                            lastUpdate: "Last update 10 Sept",
+                            lastUpdate: "10 Sept",
                           ),
                           AddCV()
                         ],

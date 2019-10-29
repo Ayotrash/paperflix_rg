@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:paperflix_rg/helpers/navigation_animation.dart';
+import 'package:paperflix_rg/screens/home/home.dart';
 import './new_resume.dart';
 
 abstract class NewResumeViewModel extends State<NewResume> {
@@ -22,7 +24,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
 
   List<DropdownMenuItem<String>> dropDownMenuItems;
   String selectedLevel = "";
- 
+
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
     for (var level in levelSkills) {
@@ -119,13 +121,14 @@ abstract class NewResumeViewModel extends State<NewResume> {
   }
 
   void changeStep() {
-    if (currentStep < 5) {
+    if (currentStep < 4) {
       moveNext();
       setState(() {
         currentStep++;
       });
     } else {
       print("Current Step : (5) Max");
+      Navigator.push(context, NavigationRoute(enterPage: Home()));
     }
   }
 
@@ -140,7 +143,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
     }
   }
 
-   @override
+  @override
   void initState() {
     dropDownMenuItems = getDropDownMenuItems();
     selectedLevel = dropDownMenuItems[0].value;

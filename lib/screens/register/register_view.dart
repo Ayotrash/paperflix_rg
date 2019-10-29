@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
-import 'package:paperflix_rg/screens/home/home.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
+import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
 import './register_view_model.dart';
 
 class RegisterView extends RegisterViewModel {
@@ -22,7 +23,7 @@ class RegisterView extends RegisterViewModel {
             floating: true,
             snap: true,
             backgroundColor: Color(0xFFFAFAFA),
-            title: Text("Register",
+            title: Text("${AppTranslations.of(context).text("register")}",
                 style: TextStyle(
                   fontFamily: "SFP_Text",
                 )),
@@ -82,7 +83,7 @@ class RegisterView extends RegisterViewModel {
                     Padding(
                       padding: const EdgeInsets.only(left: 8, bottom: 8),
                       child: Text(
-                        "Firstname",
+                        "${AppTranslations.of(context).text("firstname")}",
                         style: TextStyle(
                             fontFamily: "SFP_Text",
                             fontSize: 15,
@@ -119,7 +120,7 @@ class RegisterView extends RegisterViewModel {
                       padding:
                           const EdgeInsets.only(top: 20, left: 8, bottom: 8),
                       child: Text(
-                        "Lastname",
+                        "${AppTranslations.of(context).text("lastname")}",
                         style: TextStyle(
                             fontFamily: "SFP_Text",
                             fontSize: 15,
@@ -156,7 +157,7 @@ class RegisterView extends RegisterViewModel {
                       padding:
                           const EdgeInsets.only(top: 20, left: 8, bottom: 8),
                       child: Text(
-                        "Email",
+                        "${AppTranslations.of(context).text("email")}",
                         style: TextStyle(
                             fontFamily: "SFP_Text",
                             fontSize: 15,
@@ -194,7 +195,7 @@ class RegisterView extends RegisterViewModel {
                       padding:
                           const EdgeInsets.only(top: 20, left: 8, bottom: 8),
                       child: Text(
-                        "Password",
+                        "${AppTranslations.of(context).text("password")}",
                         style: TextStyle(
                             fontFamily: "SFP_Text",
                             fontSize: 15,
@@ -232,7 +233,7 @@ class RegisterView extends RegisterViewModel {
                       padding:
                           const EdgeInsets.only(top: 20, left: 8, bottom: 8),
                       child: Text(
-                        "Confirm Password",
+                        "${AppTranslations.of(context).text("confirm-password")}",
                         style: TextStyle(
                             fontFamily: "SFP_Text",
                             fontSize: 15,
@@ -286,14 +287,14 @@ class RegisterView extends RegisterViewModel {
                     Flexible(
                         child: RichText(
                       text: new TextSpan(
-                        text: 'With register, you agree with our',
+                        text: '${AppTranslations.of(context).text("agree-terms")}',
                         style: TextStyle(
                             fontFamily: "SFP_Text",
                             fontSize: 13.3,
                             color: Color(0xFF2f3542)),
                         children: <TextSpan>[
                           new TextSpan(
-                              text: ' terms & conditions',
+                              text: ' ${AppTranslations.of(context).text("terms-conditions")}',
                               style:
                                   new TextStyle(fontWeight: FontWeight.bold)),
                           new TextSpan(text: '.'),
@@ -313,12 +314,12 @@ class RegisterView extends RegisterViewModel {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   onPressed: () => Navigator.push(
-                      context, NavigationRoute(enterPage: Home())),
+                      context, NavigationRoute(enterPage: NewResume())),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   color: Color(0xFF2ed573),
                   textColor: Colors.white,
                   child: Text(
-                    "REGISTER",
+                    "${AppTranslations.of(context).text("register").toUpperCase()}",
                     style: TextStyle(
                         fontFamily: "SFP_Text",
                         letterSpacing: 1,
