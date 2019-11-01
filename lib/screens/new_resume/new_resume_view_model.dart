@@ -16,10 +16,9 @@ abstract class NewResumeViewModel extends State<NewResume> {
 
   List levelSkills = [
     "Beginner",
-    "Easy",
     "Intermediate",
-    "Experienced",
-    "Master"
+    "Advanced",
+    "Expert"
   ];
 
   List<DropdownMenuItem<String>> dropDownMenuItems;

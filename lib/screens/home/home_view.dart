@@ -28,7 +28,8 @@ class HomeView extends HomeViewModel {
                 backgroundColor: Colors.white,
                 automaticallyImplyLeading: false,
                 title: GestureDetector(
-                  onTap: () => Navigator.push(context, NavigationRoute(enterPage: Profile())),
+                  onTap: () => Navigator.push(
+                      context, NavigationRoute(enterPage: Profile())),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -67,7 +68,7 @@ class HomeView extends HomeViewModel {
                 ),
                 actions: <Widget>[
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => signOut(),
                     icon: Icon(Icons.more_vert),
                     color: Color(0xFF2f3542),
                   ),

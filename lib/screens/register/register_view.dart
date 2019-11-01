@@ -316,7 +316,7 @@ class RegisterView extends RegisterViewModel {
                   onPressed: () => Navigator.push(
                       context, NavigationRoute(enterPage: NewResume())),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  color: Color(0xFF2ed573),
+                  color: Color(0xFF2dd573),
                   textColor: Colors.white,
                   child: Text(
                     "${AppTranslations.of(context).text("register").toUpperCase()}",

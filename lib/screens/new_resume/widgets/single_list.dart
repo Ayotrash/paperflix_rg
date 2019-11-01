@@ -56,7 +56,7 @@ class _SingleListState extends State<SingleList> {
                                 '${widget.subvalue.length > 150 ? "Read more" : ""}',
                             style: new TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF2ed573))),
+                                color: Color(0xFF2dd573))),
                       ],
                     ),
                   )
@@ -64,7 +64,7 @@ class _SingleListState extends State<SingleList> {
               ),
             ),
             SizedBox(width: 10),
-            Icon(Icons.edit, color: Color(0xFF2ed573)),
+            Icon(Icons.edit, color: Color(0xFF2dd573)),
           ],
         ),
         FlatButton(

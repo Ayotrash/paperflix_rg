@@ -102,7 +102,7 @@ class _TemplatesCardState extends State<TemplatesCard> {
             : Text(
                 "${AppTranslations.of(context).text("free").toUpperCase()}",
                 style: TextStyle(
-                    color: Color(0xFF2ed573),
+                    color: Color(0xFF2dd573),
                     fontWeight: FontWeight.w700,
                     fontFamily: "SFP_Text",
                     fontSize: 16),

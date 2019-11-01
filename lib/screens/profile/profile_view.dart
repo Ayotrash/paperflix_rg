@@ -61,8 +61,8 @@ class ProfileView extends ProfileViewModel {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 10),
-                                  textColor: Color(0xFF2ed573),
+                                      horizontal: 0, vertical: 10),
+                                  textColor: Color(0xFF2dd573),
                                   onPressed: () {},
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -94,31 +94,38 @@ class ProfileView extends ProfileViewModel {
                                   color: Color(0xFF2f3542)),
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("full-name")}",
+                              label:
+                                  "${AppTranslations.of(context).text("full-name")}",
                               value: "Arsyad Sukma Ramadhan",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("gender")}",
+                              label:
+                                  "${AppTranslations.of(context).text("gender")}",
                               value: "Male",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("email")}",
+                              label:
+                                  "${AppTranslations.of(context).text("email")}",
                               value: "blacklistdark1987@gmail.com",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("birth-date")}",
+                              label:
+                                  "${AppTranslations.of(context).text("birth-date")}",
                               value: "30 Desember 2000",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("place-of-birth")}",
+                              label:
+                                  "${AppTranslations.of(context).text("place-of-birth")}",
                               value: "Malang, Indonesia",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("phone-number")}",
+                              label:
+                                  "${AppTranslations.of(context).text("phone-number")}",
                               value: "+62 812 8486 4756",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("job-title")}",
+                              label:
+                                  "${AppTranslations.of(context).text("job-title")}",
                               value: "Royal Programmer",
                             ),
                             SizedBox(height: 30),
@@ -131,24 +138,29 @@ class ProfileView extends ProfileViewModel {
                                   color: Color(0xFF2f3542)),
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("country")}",
+                              label:
+                                  "${AppTranslations.of(context).text("country")}",
                               value: "Indonesia",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("city")}",
+                              label:
+                                  "${AppTranslations.of(context).text("city")}",
                               value: "DKI Jakarta",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("address")}",
+                              label:
+                                  "${AppTranslations.of(context).text("address")}",
                               value:
                                   "Perum Asrikaton Blok G3/8. Pakis, Kab. Malang",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("nationality")}",
+                              label:
+                                  "${AppTranslations.of(context).text("nationality")}",
                               value: "Indonesian",
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("driving-licenses")}",
+                              label:
+                                  "${AppTranslations.of(context).text("driving-licenses")}",
                               value: "Indonesia",
                             ),
                           ],
@@ -227,7 +239,7 @@ class ProfileView extends ProfileViewModel {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
                                   onPressed: () {},
-                                  textColor: Color(0xFF2ed573),
+                                  textColor: Color(0xFF2dd573),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
@@ -257,7 +269,8 @@ class ProfileView extends ProfileViewModel {
                                   color: Color(0xFF2f3542)),
                             ),
                             SingleForm(
-                              label: "${AppTranslations.of(context).text("about-you")}",
+                              label:
+                                  "${AppTranslations.of(context).text("about-you")}",
                               value:
                                   "\"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci unde beatae quasi possimus quisquam magni hic pariatur temporibus! Quis quaerat quos ipsam voluptatum nemo, enim maxime sed autem quae? Eum corporis, error cum ad aliquam in molestias deserunt perspiciatis.\"",
                             ),
@@ -304,7 +317,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -338,12 +351,14 @@ class ProfileView extends ProfileViewModel {
                                 SingleList(
                                   icon: Icons.work,
                                   value: "Software Engineer at Paperflix",
-                                  subvalue: "Feb 2019 - ${AppTranslations.of(context).text("present")}",
+                                  subvalue:
+                                      "Feb 2019 - ${AppTranslations.of(context).text("present")}",
                                 ),
                                 SingleList(
                                   icon: Icons.work,
                                   value: "PRO Gamers at Nextbyte",
-                                  subvalue: "Feb 2019 - ${AppTranslations.of(context).text("present")}",
+                                  subvalue:
+                                      "Feb 2019 - ${AppTranslations.of(context).text("present")}",
                                 ),
                                 SizedBox(height: 20)
                               ])),
@@ -358,7 +373,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("employment")}",
@@ -395,7 +410,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -418,7 +433,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "${AppTranslations.of(context).text("education")}",
+                                  "${AppTranslations.of(context).text("education-v2")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -429,7 +444,8 @@ class ProfileView extends ProfileViewModel {
                                 SingleList(
                                   icon: Icons.school,
                                   value: "E-Sport at ITB",
-                                  subvalue: "Feb 2018 - ${AppTranslations.of(context).text("present")}",
+                                  subvalue:
+                                      "Feb 2018 - ${AppTranslations.of(context).text("present")}",
                                 ),
                                 SingleList(
                                   icon: Icons.school,
@@ -449,10 +465,10 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education")}",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education-v2")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -486,7 +502,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -509,7 +525,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "${AppTranslations.of(context).text("skills")}",
+                                  "${AppTranslations.of(context).text("skills-v2")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -550,10 +566,10 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills")}",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills-v2")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
@@ -587,7 +603,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -641,7 +657,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("activities")}",
@@ -678,7 +694,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -711,11 +727,13 @@ class ProfileView extends ProfileViewModel {
                                 SizedBox(height: 15),
                                 SingleList(
                                   value: "English",
-                                  subvalue: "${AppTranslations.of(context).text("conversational")}",
+                                  subvalue:
+                                      "${AppTranslations.of(context).text("conversational")}",
                                 ),
                                 SingleList(
                                   value: "Indonesia",
-                                  subvalue: "${AppTranslations.of(context).text("native")}",
+                                  subvalue:
+                                      "${AppTranslations.of(context).text("native")}",
                                 ),
                                 SizedBox(height: 20)
                               ])),
@@ -730,7 +748,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("language")}",
@@ -767,7 +785,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -819,7 +837,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("hobby")}",
@@ -856,7 +874,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -906,7 +924,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("references")}",
@@ -943,7 +961,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -997,7 +1015,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("courses")}",
@@ -1034,7 +1052,7 @@ class ProfileView extends ProfileViewModel {
                                               BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
-                                      textColor: Color(0xFF2ed573),
+                                      textColor: Color(0xFF2dd573),
                                       onPressed: () {},
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -1098,7 +1116,7 @@ class ProfileView extends ProfileViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 20),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("socials")}",

@@ -461,29 +461,29 @@ class CustomTemplateView extends CustomTemplateViewModel {
                                   },
                                 ),
                               ),
-                              SizedBox(height: 20),
-                              Text(
-                                "${AppTranslations.of(context).text("select-font")}",
-                                style: TextStyle(
-                                    fontFamily: "SFP_Text",
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                width: screenSize.width,
-                                decoration: BoxDecoration(
-                                    color: Color(0xFFf1f2f6),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: DropdownButtonHideUnderline(
-                                  child: new DropdownButton(
-                                    value: currentFont,
-                                    items: dropDownMenuItems,
-                                    onChanged: changedDropDownItem,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 20),
+                              // SizedBox(height: 20),
+                              // Text(
+                              //   "${AppTranslations.of(context).text("select-font")}",
+                              //   style: TextStyle(
+                              //       fontFamily: "SFP_Text",
+                              //       fontWeight: FontWeight.w500),
+                              // ),
+                              // SizedBox(height: 10),
+                              // Container(
+                              //   padding: EdgeInsets.symmetric(horizontal: 20),
+                              //   width: screenSize.width,
+                              //   decoration: BoxDecoration(
+                              //       color: Color(0xFFf1f2f6),
+                              //       borderRadius: BorderRadius.circular(10)),
+                              //   child: DropdownButtonHideUnderline(
+                              //     child: new DropdownButton(
+                              //       value: currentFont,
+                              //       items: dropDownMenuItems,
+                              //       onChanged: changedDropDownItem,
+                              //     ),
+                              //   ),
+                              // ),
+                              SizedBox(height: 30),
                               Center(
                                 child: Container(
                                   width: screenSize.width - 100,
@@ -494,7 +494,7 @@ class CustomTemplateView extends CustomTemplateViewModel {
                                             BorderRadius.circular(10)),
                                     onPressed: () {},
                                     padding: EdgeInsets.symmetric(vertical: 15),
-                                    color: Color(0xFF2ed573),
+                                    color: Color(0xFF2dd573),
                                     textColor: Colors.white,
                                     child: Text(
                                       "${AppTranslations.of(context).text("download-save").toUpperCase()}",

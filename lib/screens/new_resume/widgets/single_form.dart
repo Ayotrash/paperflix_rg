@@ -39,7 +39,7 @@ class SingleForm extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.edit),
-              color: Color(0xFF2ed573),
+              color: Color(0xFF2dd573),
               onPressed: () {},
             )
           ],

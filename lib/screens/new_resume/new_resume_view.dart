@@ -75,7 +75,7 @@ class NewResumeView extends NewResumeViewModel {
                                               width: currentStep == 0 ? 60 : 50,
                                               height: currentStep == 0 ? 60 : 50,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                   borderRadius:
                                                       BorderRadius.circular(50)),
                                               child: Icon(Icons.person,
@@ -87,7 +87,7 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 100,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                           ],
                                         ),
@@ -111,13 +111,13 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 20,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                             Container(
                                               width: currentStep == 1 ? 60 : 50,
                                               height: currentStep == 1 ? 60 : 50,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                   borderRadius:
                                                       BorderRadius.circular(50)),
                                               child: Icon(Icons.assignment,
@@ -129,7 +129,7 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 100,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                           ],
                                         ),
@@ -152,13 +152,13 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 22,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                             Container(
                                               width: currentStep == 2 ? 60 : 50,
                                               height: currentStep == 2 ? 60 : 50,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                   borderRadius:
                                                       BorderRadius.circular(50)),
                                               child: Icon(Icons.business_center,
@@ -170,7 +170,7 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 100,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                           ]),
                                           SizedBox(height: 10),
@@ -191,13 +191,13 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 13,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                             Container(
                                               width: currentStep == 3 ? 60 : 50,
                                               height: currentStep == 3 ? 60 : 50,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                   borderRadius:
                                                       BorderRadius.circular(50)),
                                               child: Icon(Icons.school,
@@ -209,11 +209,11 @@ class NewResumeView extends NewResumeViewModel {
                                                 width: 100,
                                                 height: 3,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                 )),
                                           ]),
                                           SizedBox(height: 10),
-                                          Text("${AppTranslations.of(context).text("education")}",
+                                          Text("${AppTranslations.of(context).text("education-v1")}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontSize: 16,
@@ -231,7 +231,7 @@ class NewResumeView extends NewResumeViewModel {
                                               width: currentStep == 4 ? 60 : 50,
                                               height: currentStep == 4 ? 60 : 50,
                                               decoration: BoxDecoration(
-                                                  color: Color(0xFF2ed573),
+                                                  color: Color(0xFF2dd573),
                                                   borderRadius:
                                                       BorderRadius.circular(50)),
                                               child: Icon(Icons.fitness_center,
@@ -244,7 +244,7 @@ class NewResumeView extends NewResumeViewModel {
                                           Row(
                                             children: <Widget>[
                                               SizedBox(width: 5),
-                                              Text("${AppTranslations.of(context).text("skills")}",
+                                              Text("${AppTranslations.of(context).text("skills-v1")}",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontSize: 16,
@@ -537,7 +537,7 @@ class NewResumeView extends NewResumeViewModel {
                                       onPressed: () => onBtnAddEmployment(),
                                       padding: EdgeInsets.symmetric(
                                           vertical: 15, horizontal: 20),
-                                      color: Color(0xFF2ed573),
+                                      color: Color(0xFF2dd573),
                                       textColor: Colors.white,
                                       child: Text(
                                         "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("employment")}",
@@ -722,10 +722,10 @@ class NewResumeView extends NewResumeViewModel {
                                       onPressed: () => onBtnAddEducation(),
                                       padding: EdgeInsets.symmetric(
                                           vertical: 15, horizontal: 20),
-                                      color: Color(0xFF2ed573),
+                                      color: Color(0xFF2dd573),
                                       textColor: Colors.white,
                                       child: Text(
-                                        "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education")}",
+                                        "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education-v2")}",
                                         style: TextStyle(
                                             fontFamily: "SFP_Text",
                                             fontSize: 16,
@@ -806,10 +806,10 @@ class NewResumeView extends NewResumeViewModel {
                                       onPressed: () => onBtnAddEducation(),
                                       padding: EdgeInsets.symmetric(
                                           vertical: 15, horizontal: 20),
-                                      color: Color(0xFF2ed573),
+                                      color: Color(0xFF2dd573),
                                       textColor: Colors.white,
                                       child: Text(
-                                        "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills")}",
+                                        "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills-v2")}",
                                         style: TextStyle(
                                             fontFamily: "SFP_Text",
                                             fontSize: 16,
@@ -863,7 +863,7 @@ class NewResumeView extends NewResumeViewModel {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadiusDirectional.circular(0)),
                         onPressed: () => changeStep(),
-                        color: Color(0xFF2ed573),
+                        color: Color(0xFF2dd573),
                         textColor: Colors.white,
                         child: Text(
                           currentStep < 4 ? "${AppTranslations.of(context).text("next").toUpperCase()}" : "${AppTranslations.of(context).text("finish").toUpperCase()}",

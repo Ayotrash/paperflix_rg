@@ -92,7 +92,7 @@ class PremiumView extends PremiumViewModel {
                                       children: <Widget>[
                                         Icon(
                                           Icons.star,
-                                          color: Color(0xFF2ed573),
+                                          color: Color(0xFF2dd573),
                                           size: 25,
                                         ),
                                         SizedBox(width: 10),
@@ -114,7 +114,7 @@ class PremiumView extends PremiumViewModel {
                                       children: <Widget>[
                                         Icon(
                                           Icons.star,
-                                          color: Color(0xFF2ed573),
+                                          color: Color(0xFF2dd573),
                                           size: 25,
                                         ),
                                         SizedBox(width: 10),
@@ -136,7 +136,7 @@ class PremiumView extends PremiumViewModel {
                                       children: <Widget>[
                                         Icon(
                                           Icons.star,
-                                          color: Color(0xFF2ed573),
+                                          color: Color(0xFF2dd573),
                                           size: 25,
                                         ),
                                         SizedBox(width: 10),
@@ -179,7 +179,7 @@ class PremiumView extends PremiumViewModel {
                                           fontFamily: "SFP_Text",
                                           fontWeight: FontWeight.w700,
                                           fontSize: 23,
-                                          color: Color(0xFF2ed573)),
+                                          color: Color(0xFF2dd573)),
                                     ),
                                   ],
                                 ),
@@ -211,7 +211,7 @@ class PremiumView extends PremiumViewModel {
                               onPressed: () {},
                               padding: EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 35),
-                              color: Color(0xFF2ed573),
+                              color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
                                 "${AppTranslations.of(context).text("upgrade-now").toUpperCase()}",

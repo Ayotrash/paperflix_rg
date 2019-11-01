@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import './custom_template.dart';
 
 abstract class CustomTemplateViewModel extends State<CustomTemplate> {
-  List fonts = ["Roboto", "SF Compact", "Algerian", "Brasov", "Constanta"];
+  // List fonts = [
+  //   "SFP_Text",
+  //   "Jomolhari",
+  //   "McLaren",
+  //   "Lato",
+  //   "Open Sans",
+  //   "Oswald"
+  // ];
   final List colors = [
     0xFF1e90ff,
-    0xFF2ed573,
+    0xFF2dd573,
     0xFFff4757,
     0xFFffa502,
     0xFF747d8c
@@ -13,13 +20,13 @@ abstract class CustomTemplateViewModel extends State<CustomTemplate> {
   List<bool> colorsSelector = List.generate(100, (i) => false);
   int colorSelected = 0xFF1e90ff;
 
-  List<DropdownMenuItem<String>> dropDownMenuItems;
-  String currentFont;
+  // List<DropdownMenuItem<String>> dropDownMenuItems;
+  // String currentFont = 'SFP_Text';
 
   @override
   void initState() {
-    dropDownMenuItems = getDropDownMenuItems();
-    currentFont = dropDownMenuItems[0].value;
+    // dropDownMenuItems = getDropDownMenuItems();
+    // currentFont = dropDownMenuItems[0].value;
     super.initState();
   }
 
@@ -31,22 +38,22 @@ abstract class CustomTemplateViewModel extends State<CustomTemplate> {
     });
   }
 
-  List<DropdownMenuItem<String>> getDropDownMenuItems() {
-    List<DropdownMenuItem<String>> items = new List();
-    for (String font in fonts) {
-      items.add(new DropdownMenuItem(
-          value: font,
-          child: new Text(
-            font,
-            style: TextStyle(color: Color(0xFF2f3542)),
-          )));
-    }
-    return items;
-  }
+  // List<DropdownMenuItem<String>> getDropDownMenuItems() {
+  //   List<DropdownMenuItem<String>> items = new List();
+  //   for (String font in fonts) {
+  //     items.add(new DropdownMenuItem(
+  //         value: font,
+  //         child: new Text(
+  //           font,
+  //           style: TextStyle(color: Color(0xFF2f3542)),
+  //         )));
+  //   }
+  //   return items;
+  // }
 
-  void changedDropDownItem(String selectedFont) {
-    setState(() {
-      currentFont = selectedFont;
-    });
-  }
+  // void changedDropDownItem(String selectedFont) {
+  //   setState(() {
+  //     currentFont = selectedFont;
+  //   });
+  // }
 }
