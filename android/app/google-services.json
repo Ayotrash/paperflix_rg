@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "685137427229",
+    "firebase_url": "https://paperflix-company.firebaseio.com",
+    "project_id": "paperflix-company",
+    "storage_bucket": "paperflix-company.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685137427229:android:fbaa8261716f7420713ff4",
+        "android_client_info": {
+          "package_name": "com.paperflix.paperflix_rg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685137427229-ct3f0juq7let3rocbc8fo7s56v33b50s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.paperflix.paperflix_rg",
+            "certificate_hash": "920c01dfb98d9df80c22e3efa350fbbaef6818c6"
+          }
+        },
+        {
+          "client_id": "685137427229-k8551u6e8c08k8f5klg7sveb6giio7lo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0yoFzeInvEv3FDC5YX9zGdzfFbGBpMeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685137427229-k8551u6e8c08k8f5klg7sveb6giio7lo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

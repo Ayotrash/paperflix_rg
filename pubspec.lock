@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.9+6"
   collection:
     dependency: transitive
     description:
@@ -99,6 +106,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+  firebase_auth:
+    dependency: "direct main"
+    description:
+      name: firebase_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.0+5"
+  firebase_core:
+    dependency: transitive
+    description:
+      name: firebase_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0+9"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -116,13 +137,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_redux:
-    dependency: "direct main"
-    description:
-      name: flutter_redux
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -282,27 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-  redux:
+  shared_preferences:
     dependency: "direct main"
     description:
-      name: redux
+      name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
-  redux_logging:
-    dependency: "direct main"
-    description:
-      name: redux_logging
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
-  redux_thunk:
-    dependency: "direct main"
-    description:
-      name: redux_thunk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
+    version: "0.5.4+3"
   sky_engine:
     dependency: transitive
     description: flutter

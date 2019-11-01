@@ -22,10 +22,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  redux: ^3.0.0
-  redux_logging: ^0.3.0
-  flutter_redux: ^0.5.3
-  redux_thunk: ^0.2.1
+  firebase_auth: ^0.14.0+5
+  cloud_firestore: ^0.12.9+6
+
+  # redux: ^3.0.0
+  # redux_logging: ^0.3.0
+  # flutter_redux: ^0.5.3
+  # redux_thunk: ^0.2.1
+  shared_preferences: ^0.5.4+3
 
   i18n: ^0.9.4
   intl: ^0.15.8
@@ -65,29 +69,29 @@ flutter:
     - family: SFP_Text
       fonts:
         - asset: fonts/SF_Compact/SF-Compact-Text-Light.otf
-          weight: 200
+          weight: 300
         - asset: fonts/SF_Compact/SF-Compact-Text-LightItalic.otf
-          weight: 200
+          weight: 300
           style: italic
         - asset: fonts/SF_Compact/SF-Compact-Text-Regular.otf
-          weight: 300
+          weight: 400
         - asset: fonts/SF_Compact/SF-Compact-Text-RegularItalic.otf
-          weight: 300
+          weight: 400
           style: italic
         - asset: fonts/SF_Compact/SF-Compact-Text-Medium.otf
-          weight: 400
+          weight: 500
         - asset: fonts/SF_Compact/SF-Compact-Text-MediumItalic.otf
-          weight: 400
+          weight: 500
           style: italic
         - asset: fonts/SF_Compact/SF-Compact-Text-Bold.otf
-          weight: 500
+          weight: 700
         - asset: fonts/SF_Compact/SF-Compact-Text-BoldItalic.otf
-          weight: 500
+          weight: 700
           style: italic
         - asset: fonts/SF_Compact/SF-Compact-Text-Heavy.otf
-          weight: 600
+          weight: 800
         - asset: fonts/SF_Compact/SF-Compact-Text-HeavyItalic.otf
-          weight: 600
+          weight: 800
           style: italic
   # fonts:
   #   - family: Schyler
