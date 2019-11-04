@@ -92,7 +92,7 @@
   "native": "Asli",
   "intermediate": "Menengah",
   "advanced": "Lanjut",
-  "Expert": "Expert",
+  "expert": "Ahli",
   "hobby": "Hobi",
   "references": "Referensi",
   "courses": "Kursus",
@@ -101,5 +101,16 @@
   "firstname": "Nama Depan",
   "lastname": "Nama Belakang",
   "agree-terms": "Dengan register, Anda setuju dengan kami",
-  "terms-conditions": "syarat & ketentuan"
+  "terms-conditions": "syarat & ketentuan",
+  "password-terms": "Kata sandi harus lebih dari 8 karakter",
+  "until-now": "Saat ini",
+  "want-quit": "Anda yakin ingin keluar?",
+  "want-skip": "Anda yakin ingin melewati?",
+  "want-finish": "Anda yakin ingin menyelesaikannya?",
+  "lost-all-this-session": "Anda akan kehilangan data yang anda isi dari sesi ini.",
+  "check-resume-again": "Apakah Anda akan memeriksa resume Anda lagi?",
+  "yes": "Ya",
+  "no": "Tidak",
+  "ok": "Oke",
+  "cancel": "Batal"
 }
