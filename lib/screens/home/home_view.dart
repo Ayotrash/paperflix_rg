@@ -33,13 +33,30 @@ class HomeView extends HomeViewModel {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Container(
-                        width: 35,
-                        height: 35,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset("assets/arsyad.jpg")),
-                      ),
+                      profileImage
+                          ? Container(
+                              width: 35,
+                              height: 35,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset("assets/arsyad.jpg")),
+                            )
+                          : Container(
+                              height: 35,
+                              width: 35,
+                              // margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                              alignment: Alignment.bottomCenter,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFf1f2f6),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: gender == 0
+                                    ? Image.asset("assets/girl.png")
+                                    : Image.asset("assets/boy.png"),
+                              ),
+                            ),
                       SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

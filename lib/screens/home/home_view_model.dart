@@ -5,6 +5,8 @@ import './home.dart';
 
 abstract class HomeViewModel extends State<Home> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  bool profileImage = false;
+  int gender = 1;
 
   Future<void> signOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
