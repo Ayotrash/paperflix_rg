@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
+import 'package:loading/loading.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/choose_gender/choose_gender.dart';
+import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
 import './authentication_view_model.dart';
 
 class AuthenticationView extends AuthenticationViewModel {
@@ -102,7 +105,11 @@ class AuthenticationView extends AuthenticationViewModel {
                                     onPressed: () => Navigator.push(
                                         context,
                                         NavigationRoute(
-                                            enterPage: ChooseGender())),
+                                            enterPage: NewResume())),
+                                    // onPressed: () => Navigator.push(
+                                    //     context,
+                                    //     NavigationRoute(
+                                    //         enterPage: ChooseGender())),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 15),
                                     color: Color(0xFF2dd573),
@@ -249,6 +256,27 @@ class AuthenticationView extends AuthenticationViewModel {
                                         ),
                                       )),
                                   SizedBox(height: 20),
+                                  error
+                                      ? Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                          width: screenSize.width,
+                                          decoration: BoxDecoration(
+                                              color: Color(0xFFff4757)
+                                                  .withOpacity(0.9),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Text(
+                                            "$message",
+                                            style: TextStyle(
+                                                letterSpacing: 1,
+                                                fontFamily: "SFP_Text",
+                                                fontSize: 12,
+                                                color: Colors.white),
+                                          ),
+                                        )
+                                      : SizedBox(),
+                                  error ? SizedBox(height: 20) : SizedBox(),
                                   Center(
                                     child: Container(
                                       width: screenSize.width - 100,
@@ -257,19 +285,27 @@ class AuthenticationView extends AuthenticationViewModel {
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        onPressed: () => onBtnLoginClick(),
+                                        onPressed: () =>
+                                            !isLoading ? onBtnLoginClick() : {},
                                         padding:
                                             EdgeInsets.symmetric(vertical: 15),
                                         color: Color(0xFF2dd573),
                                         textColor: Colors.white,
-                                        child: Text(
-                                          "${AppTranslations.of(context).text("login").toUpperCase()}",
-                                          style: TextStyle(
-                                              letterSpacing: 1,
-                                              fontFamily: "SFP_Text",
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w900),
-                                        ),
+                                        child: isLoading
+                                            ? Center(
+                                                child: Loading(
+                                                    indicator:
+                                                        BallSpinFadeLoaderIndicator(),
+                                                    size: 20.0))
+                                            : Text(
+                                                "${AppTranslations.of(context).text("login").toUpperCase()}",
+                                                style: TextStyle(
+                                                    letterSpacing: 1,
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
                                       ),
                                     ),
                                   ),
