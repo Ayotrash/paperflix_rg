@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class SingleForm extends StatelessWidget {
   final String label, value;
+  final bool edit;
   final onEdit;
 
-  SingleForm({this.label, this.value, this.onEdit});
+  SingleForm({this.label, this.value, this.onEdit, this.edit: true});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +39,13 @@ class SingleForm extends StatelessWidget {
                 )
               ],
             ),
-            IconButton(
-              icon: Icon(Icons.edit),
-              color: Color(0xFF2dd573),
-              onPressed: () => onEdit(),
-            )
+            edit
+                ? IconButton(
+                    icon: Icon(Icons.edit),
+                    color: Color(0xFF2dd573),
+                    onPressed: () => onEdit(),
+                  )
+                : SizedBox()
           ],
         ),
       ],

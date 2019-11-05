@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
-import 'package:paperflix_rg/config/config.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/home/home.dart';
@@ -56,7 +54,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
   bool addSkills = false;
   bool fullnameEdit = false;
   bool genderEdit = false;
-  bool emailEdit = false;
+  // bool emailEdit = false;
   bool employmentPresent = false;
   bool educationPresent = false;
 
@@ -171,12 +169,13 @@ abstract class NewResumeViewModel extends State<NewResume> {
     print("genderEdit : $genderEdit");
   }
 
-  Future<void> onEditEmail() async {
-    setState(() {
-      emailEdit = !emailEdit;
-    });
-    print("emailEdit : $emailEdit");
-  }
+  // Future<void> onEditEmail() async {
+  //   setState(() {
+  //     emailEdit = !emailEdit;
+  //   });
+  //   print(this.widget.email);
+  //   print("emailEdit : $emailEdit");
+  // }
 
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
@@ -540,12 +539,6 @@ abstract class NewResumeViewModel extends State<NewResume> {
   }
 
   void getSkills() {
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-    _firebaseAuth
-        .signInWithEmailAndPassword(
-            email: "${USERUPLOADER['email']}",
-            password: "${USERUPLOADER['password']}")
-        .then((AuthResult result) async {
       db.collection("skills").getDocuments().then((data) {
         if (data.documents.length > 0) {
           List<String> items = List();
@@ -560,9 +553,6 @@ abstract class NewResumeViewModel extends State<NewResume> {
           print("Error fetch countries_code");
         }
       });
-    }).catchError((err) {
-      print(err);
-    });
   }
 
   @override
@@ -575,7 +565,6 @@ abstract class NewResumeViewModel extends State<NewResume> {
     firstnameController.text = this.widget.firstname;
     lastnameController.text = this.widget.lastname;
     emailController.text = this.widget.email;
-    print(this.widget.email);
     super.initState();
   }
 }

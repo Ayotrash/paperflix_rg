@@ -316,14 +316,17 @@ class NewResumeView extends NewResumeViewModel {
                                 ),
                                 ],) :
                                 SingleForm(label: "${AppTranslations.of(context).text("gender")}", value: "${currentGender == 'female' ? "Female": currentGender == 'male' ? "Male" : ""}", onEdit: onEditGender,),
-                                emailEdit ? FormText(
-                                  label: "${AppTranslations.of(context).text("email")}",
-                                  hint: "${emailController.text}",
-                                  controller: emailController,
-                                ) : SingleForm(
+                                // emailEdit ? FormText(
+                                //   label: "${AppTranslations.of(context).text("email")}",
+                                //   hint: "${emailController.text}",
+                                //   controller: emailController
+                                // ) : 
+                                SingleForm(
                                     label: "${AppTranslations.of(context).text("email")}",
                                     value: "${emailController.text}",
-                                    onEdit: onEditEmail,),
+                                    edit: false,
+                                    // onEdit: onEditEmail
+                                    ),
                                 Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
