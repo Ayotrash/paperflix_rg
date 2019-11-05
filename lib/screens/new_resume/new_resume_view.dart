@@ -380,6 +380,11 @@ class NewResumeView extends NewResumeViewModel {
                                   controller: countryController,
                                 ),
                                 FormText(
+                                  label: "${AppTranslations.of(context).text("province")}",
+                                  hint: "e.g. Washington D.C.",
+                                  controller: provinceController,
+                                ),
+                                FormText(
                                   label: "${AppTranslations.of(context).text("city")}",
                                   hint: "e.g. California, New York",
                                   controller: cityController,

@@ -144,8 +144,13 @@ class ProfileView extends ProfileViewModel {
                             ),
                             SingleForm(
                               label:
-                                  "${AppTranslations.of(context).text("city")}",
+                                  "${AppTranslations.of(context).text("province")}",
                               value: "DKI Jakarta",
+                            ),
+                            SingleForm(
+                              label:
+                                  "${AppTranslations.of(context).text("city")}",
+                              value: "East Jakarta",
                             ),
                             SingleForm(
                               label:

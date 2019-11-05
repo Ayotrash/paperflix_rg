@@ -3,17 +3,16 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'package:paperflix_rg/config/config.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:toast/toast.dart';
 import './new_resume.dart';
 
 abstract class NewResumeViewModel extends State<NewResume> {
   final db = Firestore.instance;
-  final LocalStorage storage = new LocalStorage('paperflix_rg');
   ScrollController stepScroll = ScrollController();
   int currentStep = 0;
 
@@ -24,6 +23,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+  TextEditingController provinceController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController drivingLicensesController = TextEditingController();
@@ -487,13 +487,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
-                  if (type == 0) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        NavigationRoute(enterPage: Home()),
-                        ModalRoute.withName('/Auth'));
-                  } else {
                     uploadData();
-                  }
                 },
               ),
             ],
@@ -515,6 +509,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
       "phone_number": "$currentCountryCode${phoneNumberController.text ?? ""}",
       "job_title": "${jobTitleController.text ?? ""}",
       "country": "${countryController.text ?? ""}",
+      "province": "${provinceController.text ?? ""}",
       "city": "${cityController.text ?? ""}",
       "address": "${addressController.text ?? ""}",
       "driving_licenses": "${drivingLicensesController.text ?? ""}",
@@ -523,6 +518,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
       "education": educationList ?? [],
       "skills": skillsList ?? []
     };
+
     try {
       db
           .collection("users")
@@ -539,7 +535,8 @@ abstract class NewResumeViewModel extends State<NewResume> {
               .then((res) {
             print("Update ${data.documents[0]['email']} Success");
             toastMsg("Data Upload Success");
-            storage.setItem('userProfile', _temp);
+
+            storage.setItem('userProfile', Map<String, dynamic>.from(_temp));
             print(storage.getItem('userProfile'));
 
             Navigator.of(context).pushAndRemoveUntil(
@@ -569,7 +566,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
           typeSkills = items;
         });
       } else {
-        print("Error fetch countries_code");
+        print("Error fetch skills");
       }
     });
   }

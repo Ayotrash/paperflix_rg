@@ -35,7 +35,7 @@ abstract class AuthenticationViewModel extends State<Authentication> {
     });
   }
 
-  Future<void> checkPassword(String hash) async {
+  Future<void> checkPassword(String hash, data) async {
     bool result = await FlutterBcrypt.verify(
         password: '${passwordController.text}', hash: hash);
     print(result);
@@ -54,6 +54,9 @@ abstract class AuthenticationViewModel extends State<Authentication> {
           await prefs.setString("uidUser", "${user.uid}");
           await prefs.setBool('isLogin', true);
           print(user);
+
+          storage.setItem('userProfile', Map<String, dynamic>.from(data));
+          print(storage.getItem('userProfile'));
 
           //clean form
           emailController.clear();
@@ -106,7 +109,8 @@ abstract class AuthenticationViewModel extends State<Authentication> {
             .listen((data) {
           if (data.documents.length > 0) {
             print('email: ${data.documents[0]['email']}');
-            checkPassword(data.documents[0]['password']);
+            checkPassword(
+                data.documents[0]['password'], data.documents[0].data);
           } else {
             toggleLoading();
             setState(() {
