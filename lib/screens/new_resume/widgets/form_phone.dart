@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 
@@ -5,47 +7,61 @@ class FormPhone extends StatefulWidget {
   final TextEditingController controller;
   final String label, hint;
   final bool question;
+  final onChange;
 
-  FormPhone({this.controller, this.label, this.question, this.hint});
+  FormPhone(
+      {this.controller, this.label, this.question, this.hint, this.onChange});
 
   @override
   _FormPhoneState createState() => _FormPhoneState();
 }
 
 class _FormPhoneState extends State<FormPhone> {
-  List countries = [
-    {"code": '+62', 'name': 'Indonesia'},
-    {"code": '+1', 'name': 'USA'},
-    {"code": '+12', 'name': 'Indonesia'},
-  ];
+  final db = Firestore.instance;
 
-  List<DropdownMenuItem<String>> dropDownMenuItems;
-  String currentCity;
+  List<DropdownMenuItem<Map>> dropDownMenuCode;
+  Map currentCode;
 
   @override
   void initState() {
-    dropDownMenuItems = getDropDownMenuItems();
-    currentCity = dropDownMenuItems[0].value;
+    dropDownMenuCode = getDropDownMenuItems();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // print(data);
+    });
   }
 
-  List<DropdownMenuItem<String>> getDropDownMenuItems() {
-    List<DropdownMenuItem<String>> items = new List();
-    for (var country in countries) {
-      items.add(new DropdownMenuItem(
-          value: country['code'],
-          child: new Text(
-            country['code'],
-            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-          )));
-    }
+  List<DropdownMenuItem<Map>> getDropDownMenuItems() {
+    List<DropdownMenuItem<Map>> items = List();
+      db.collection("countries_code").getDocuments().then((data) {
+        if (data.documents.length > 0) {
+          print(data.documents[0].data);
+          for (var country in data.documents) {
+            items.add(new DropdownMenuItem(
+                value: country.data,
+                child: new Text(
+                  "+${country.data['code']}",
+                  style: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                )));
+          }
+          setState(() {
+            currentCode = data.documents[0].data;
+            widget.onChange("+${data.documents[0].data['code']}");
+          });
+        } else {
+          print("Error fetch countries_code");
+        }
+      });
+
     return items;
   }
 
-  void changedDropDownItem(String selectedCity) {
+  void changedDropDownCode(Map selectedCode) {
     setState(() {
-      currentCity = selectedCity;
+      currentCode = selectedCode;
     });
+    widget.onChange(selectedCode);
   }
 
   @override
@@ -77,9 +93,9 @@ class _FormPhoneState extends State<FormPhone> {
               ),
               child: DropdownButtonHideUnderline(
                 child: new DropdownButton(
-                  value: currentCity,
-                  items: dropDownMenuItems,
-                  onChanged: changedDropDownItem,
+                  value: currentCode,
+                  items: dropDownMenuCode,
+                  onChanged: changedDropDownCode,
                 ),
               ),
             ),
@@ -100,6 +116,7 @@ class _FormPhoneState extends State<FormPhone> {
                       fontWeight: FontWeight.w500,
                     ),
                     controller: widget.controller,
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       fillColor: Color(0xFFced6e0),
                       hintText: "${widget.hint}",
@@ -127,7 +144,7 @@ class _FormPhoneState extends State<FormPhone> {
                   color: Colors.grey),
             ),
             Text(
-              "${countries[0]['name']}",
+              "${currentCode != null ? currentCode['name'] : ""}",
               style: TextStyle(
                   fontFamily: "SFP_Text",
                   fontWeight: FontWeight.w900,

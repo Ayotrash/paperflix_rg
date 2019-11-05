@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperflix_rg/localization/app_translations.dart';
 
 class FormText extends StatelessWidget {
   final TextEditingController controller;
@@ -47,6 +48,7 @@ class FormText extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               controller: controller,
+              keyboardType: label == AppTranslations.of(context).text("email") ? TextInputType.emailAddress : TextInputType.text,
               decoration: InputDecoration(
                 fillColor: Color(0xFFced6e0),
                 hintText: "$hint",
