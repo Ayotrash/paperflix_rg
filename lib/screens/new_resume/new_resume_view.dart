@@ -316,14 +316,17 @@ class NewResumeView extends NewResumeViewModel {
                                 ),
                                 ],) :
                                 SingleForm(label: "${AppTranslations.of(context).text("gender")}", value: "${currentGender == 'female' ? "Female": currentGender == 'male' ? "Male" : ""}", onEdit: onEditGender,),
-                                emailEdit ? FormText(
-                                  label: "${AppTranslations.of(context).text("email")}",
-                                  hint: "${emailController.text}",
-                                  controller: emailController,
-                                ) : SingleForm(
+                                // emailEdit ? FormText(
+                                //   label: "${AppTranslations.of(context).text("email")}",
+                                //   hint: "${emailController.text}",
+                                //   controller: emailController
+                                // ) : 
+                                SingleForm(
                                     label: "${AppTranslations.of(context).text("email")}",
                                     value: "${emailController.text}",
-                                    onEdit: onEditEmail,),
+                                    edit: false,
+                                    // onEdit: onEditEmail
+                                    ),
                                 Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
@@ -858,7 +861,7 @@ class NewResumeView extends NewResumeViewModel {
                                               return ColorsList(
                                                 value: "${skillsList[i]['skill_type']}",
                                                 subvalue: "${skillsList[i]['level'] == "beginner" ? AppTranslations.of(context).text("beginner") : skillsList[i]['level'] == "intermediate" ? AppTranslations.of(context).text("intermediate") : skillsList[i]['level'] == "advanced" ? AppTranslations.of(context).text("advanced") : skillsList[i]['level'] == "expert" ? AppTranslations.of(context).text("expert") : ""}",
-                                                color: 0xFFff4757,
+                                                color: indexColor,
                                                 param1:"${skillsList[i]['skill_type']}" ,
                                                 param2: "${skillsList[i]['level']}",
                                                 onDelete: removeSkills,

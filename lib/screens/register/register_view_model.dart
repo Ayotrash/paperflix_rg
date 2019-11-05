@@ -210,8 +210,6 @@ abstract class RegisterViewModel extends State<Register> {
     }
   }
 
-  // Future setLocalUid() async
-
   Future loginFunc() async {
     _firebaseAuth
         .signInWithEmailAndPassword(
@@ -222,12 +220,11 @@ abstract class RegisterViewModel extends State<Register> {
       FirebaseUser user = result.user;
 
       //set localstorage
+      await prefs.setString("uidUser", "${user.uid}");
       await prefs.setBool('isLogin', true);
       print(user.uid);
 
       //clean form
-      emailController.clear();
-      passwordController.clear();
       toggleLoading();
       setState(() {
         passwordBcrypt = null;

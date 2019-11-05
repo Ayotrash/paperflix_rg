@@ -1,8 +1,8 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
-import 'package:paperflix_rg/config/config.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/home/home.dart';
@@ -56,7 +56,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
   bool addSkills = false;
   bool fullnameEdit = false;
   bool genderEdit = false;
-  bool emailEdit = false;
+  // bool emailEdit = false;
   bool employmentPresent = false;
   bool educationPresent = false;
 
@@ -75,6 +75,23 @@ abstract class NewResumeViewModel extends State<NewResume> {
   List skillsList = List();
 
   List<String> typeSkills = List();
+
+  List colors = [
+    0xFFff4757,
+    0xFF2ed573,
+    0xFFffa502,
+    0xFFeccc68,
+    0xFFff6b81,
+    0xFF1e90ff,
+    0xFF3742fa
+  ];
+  Random random = new Random();
+
+  int indexColor = 0;
+
+  void changeIndex() {
+    setState(() => indexColor = random.nextInt(7));
+  }
 
   List<DropdownMenuItem<String>> dropDownMenuItems;
   String selectedLevel = "beginner";
@@ -171,12 +188,13 @@ abstract class NewResumeViewModel extends State<NewResume> {
     print("genderEdit : $genderEdit");
   }
 
-  Future<void> onEditEmail() async {
-    setState(() {
-      emailEdit = !emailEdit;
-    });
-    print("emailEdit : $emailEdit");
-  }
+  // Future<void> onEditEmail() async {
+  //   setState(() {
+  //     emailEdit = !emailEdit;
+  //   });
+  //   print(this.widget.email);
+  //   print("emailEdit : $emailEdit");
+  // }
 
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
@@ -540,28 +558,19 @@ abstract class NewResumeViewModel extends State<NewResume> {
   }
 
   void getSkills() {
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-    _firebaseAuth
-        .signInWithEmailAndPassword(
-            email: "${USERUPLOADER['email']}",
-            password: "${USERUPLOADER['password']}")
-        .then((AuthResult result) async {
-      db.collection("skills").getDocuments().then((data) {
-        if (data.documents.length > 0) {
-          List<String> items = List();
-          print(data.documents[0].data);
-          for (var item in data.documents) {
-            items.add(item.data['name']);
-          }
-          setState(() {
-            typeSkills = items;
-          });
-        } else {
-          print("Error fetch countries_code");
+    db.collection("skills").getDocuments().then((data) {
+      if (data.documents.length > 0) {
+        List<String> items = List();
+        print(data.documents[0].data);
+        for (var item in data.documents) {
+          items.add(item.data['name']);
         }
-      });
-    }).catchError((err) {
-      print(err);
+        setState(() {
+          typeSkills = items;
+        });
+      } else {
+        print("Error fetch countries_code");
+      }
     });
   }
 
@@ -575,7 +584,6 @@ abstract class NewResumeViewModel extends State<NewResume> {
     firstnameController.text = this.widget.firstname;
     lastnameController.text = this.widget.lastname;
     emailController.text = this.widget.email;
-    print(this.widget.email);
     super.initState();
   }
 }
