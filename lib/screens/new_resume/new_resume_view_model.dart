@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
@@ -73,6 +75,23 @@ abstract class NewResumeViewModel extends State<NewResume> {
   List skillsList = List();
 
   List<String> typeSkills = List();
+
+  List colors = [
+    0xFFff4757,
+    0xFF2ed573,
+    0xFFffa502,
+    0xFFeccc68,
+    0xFFff6b81,
+    0xFF1e90ff,
+    0xFF3742fa
+  ];
+  Random random = new Random();
+
+  int indexColor = 0;
+
+  void changeIndex() {
+    setState(() => indexColor = random.nextInt(7));
+  }
 
   List<DropdownMenuItem<String>> dropDownMenuItems;
   String selectedLevel = "beginner";
@@ -539,20 +558,20 @@ abstract class NewResumeViewModel extends State<NewResume> {
   }
 
   void getSkills() {
-      db.collection("skills").getDocuments().then((data) {
-        if (data.documents.length > 0) {
-          List<String> items = List();
-          print(data.documents[0].data);
-          for (var item in data.documents) {
-            items.add(item.data['name']);
-          }
-          setState(() {
-            typeSkills = items;
-          });
-        } else {
-          print("Error fetch countries_code");
+    db.collection("skills").getDocuments().then((data) {
+      if (data.documents.length > 0) {
+        List<String> items = List();
+        print(data.documents[0].data);
+        for (var item in data.documents) {
+          items.add(item.data['name']);
         }
-      });
+        setState(() {
+          typeSkills = items;
+        });
+      } else {
+        print("Error fetch countries_code");
+      }
+    });
   }
 
   @override
