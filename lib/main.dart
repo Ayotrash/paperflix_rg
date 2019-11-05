@@ -53,7 +53,7 @@ class _MainAppState extends State<MainApp> {
           iconTheme: IconThemeData(
             color: Color(0xFF2F3542),
           ),
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.green,
           primaryTextTheme:
               TextTheme(title: TextStyle(color: Color(0xFF2f3542)))),
       localizationsDelegates: [

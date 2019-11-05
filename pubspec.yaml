@@ -33,6 +33,7 @@ dependencies:
   # flutter_redux: ^0.5.3
   # redux_thunk: ^0.2.1
   shared_preferences: ^0.5.4+3
+  localstorage: ^3.0.0+3
   dio: ^3.0.4
 
   i18n: ^0.9.4
