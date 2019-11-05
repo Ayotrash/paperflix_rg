@@ -314,7 +314,8 @@ class NewResumeView extends NewResumeViewModel {
                                     ),
                                   ),
                                 ),
-                                ],) :SingleForm(label: "${AppTranslations.of(context).text("gender")}", value: "${currentGender == 'female' ? "Female": currentGender == 'male' ? "Male" : ""}", onEdit: onEditGender,),
+                                ],) :
+                                SingleForm(label: "${AppTranslations.of(context).text("gender")}", value: "${currentGender == 'female' ? "Female": currentGender == 'male' ? "Male" : ""}", onEdit: onEditGender,),
                                 emailEdit ? FormText(
                                   label: "${AppTranslations.of(context).text("email")}",
                                   hint: "${emailController.text}",

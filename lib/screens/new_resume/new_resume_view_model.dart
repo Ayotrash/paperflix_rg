@@ -575,7 +575,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
     firstnameController.text = this.widget.firstname;
     lastnameController.text = this.widget.lastname;
     emailController.text = this.widget.email;
+    print(this.widget.email);
     super.initState();
   }
 }
-

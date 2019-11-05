@@ -49,11 +49,10 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           // platform: TargetPlatform.iOS,
-          brightness: Brightness.light,
           iconTheme: IconThemeData(
             color: Color(0xFF2F3542),
           ),
-          primarySwatch: Colors.green,
+          primarySwatch: Colors.grey,
           primaryTextTheme:
               TextTheme(title: TextStyle(color: Color(0xFF2f3542)))),
       localizationsDelegates: [

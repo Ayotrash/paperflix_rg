@@ -717,7 +717,7 @@ class ProfileView extends ProfileViewModel {
                                   ],
                                 ),
                                 Text(
-                                  "${AppTranslations.of(context).text("edit")}",
+                                  "${AppTranslations.of(context).text("languages")}",
                                   style: TextStyle(
                                       fontFamily: "SFP_Text",
                                       fontWeight: FontWeight.w900,
@@ -751,7 +751,7 @@ class ProfileView extends ProfileViewModel {
                               color: Color(0xFF2dd573),
                               textColor: Colors.white,
                               child: Text(
-                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("language")}",
+                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("languages")}",
                                 style: TextStyle(
                                     fontFamily: "SFP_Text",
                                     fontSize: 16,
