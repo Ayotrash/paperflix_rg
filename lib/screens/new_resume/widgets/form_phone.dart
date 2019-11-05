@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 
@@ -33,26 +32,26 @@ class _FormPhoneState extends State<FormPhone> {
 
   List<DropdownMenuItem<Map>> getDropDownMenuItems() {
     List<DropdownMenuItem<Map>> items = List();
-      db.collection("countries_code").getDocuments().then((data) {
-        if (data.documents.length > 0) {
-          print(data.documents[0].data);
-          for (var country in data.documents) {
-            items.add(new DropdownMenuItem(
-                value: country.data,
-                child: new Text(
-                  "+${country.data['code']}",
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.bold),
-                )));
-          }
-          setState(() {
-            currentCode = data.documents[0].data;
-            widget.onChange("+${data.documents[0].data['code']}");
-          });
-        } else {
-          print("Error fetch countries_code");
+    db.collection("countries_code").getDocuments().then((data) {
+      if (data.documents.length > 0) {
+        print(data.documents[0].data);
+        for (var country in data.documents) {
+          items.add(new DropdownMenuItem(
+              value: country.data,
+              child: new Text(
+                "+${country.data['code']}",
+                style:
+                    TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+              )));
         }
-      });
+        setState(() {
+          currentCode = data.documents[0].data;
+          widget.onChange("+${data.documents[0].data['code']}");
+        });
+      } else {
+        print("Error fetch countries_code");
+      }
+    });
 
     return items;
   }
