@@ -5,6 +5,8 @@ import 'package:paperflix_rg/localization/app_translations_delegate.dart';
 import 'package:paperflix_rg/localization/application.dart';
 import 'package:paperflix_rg/routes.dart';
 import 'package:paperflix_rg/screens/authentication/authentication.dart';
+import 'package:paperflix_rg/screens/home/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([
@@ -22,10 +24,19 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   AppTranslationsDelegate _newLocaleDelegate;
+  bool isLogin = false;
+
+  Future<void> getLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isLogin = prefs.getBool('isLogin');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    getLogin();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
     // getLocate();
@@ -64,7 +75,7 @@ class _MainAppState extends State<MainApp> {
         const Locale('en', ''),
         const Locale('id', ''),
       ],
-      home: Authentication(),
+      home: !isLogin ? Authentication() : Home(),
       routes: routes,
     );
   }
