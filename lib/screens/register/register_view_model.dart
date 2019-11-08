@@ -3,6 +3,7 @@ import 'dart:io' show File, Platform;
 import 'package:dio/dio.dart';
 import 'package:flutter_bcrypt/flutter_bcrypt.dart';
 import 'package:paperflix_rg/config/config.dart';
+import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +14,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/providers/providers.dart';
-import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './register.dart';
 
@@ -197,7 +197,6 @@ abstract class RegisterViewModel extends State<Register> {
     if (response.statusCode == 201) {
       setState(() {
         passwordBcrypt = bcrypt;
-        securityButton = 0;
         errorEmail = false;
         securityButton++;
       });
@@ -224,6 +223,20 @@ abstract class RegisterViewModel extends State<Register> {
       await prefs.setBool('isLogin', true);
       print(user.uid);
 
+      Map<String, dynamic> _temp = {
+        "firstname": "${firstnameController.text}",
+        "lastname": "${lastnameController.text}",
+        "email": "${emailController.text}",
+        "gender": this.widget.gender == 0 ? "female" : "male",
+        "avatar": imageUrl == null
+            ? this.widget.gender == 0
+                ? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6"
+                : "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"
+            : imageUrl,
+      };
+
+      await storage.setItem('userProfile', Map<String, dynamic>.from(_temp));
+
       //clean form
       toggleLoading();
       setState(() {
@@ -235,6 +248,11 @@ abstract class RegisterViewModel extends State<Register> {
           context,
           NavigationRoute(
               enterPage: NewResume(
+            avatar: imageUrl == null
+                ? this.widget.gender == 0
+                    ? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6"
+                    : "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"
+                : imageUrl,
             firstname: "${firstnameController.text}",
             lastname: "${lastnameController.text}",
             email: "${emailController.text}",
@@ -401,7 +419,9 @@ abstract class RegisterViewModel extends State<Register> {
 
   @override
   void initState() {
-    getDeviceInfo();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getDeviceInfo();
+    });
   }
 }

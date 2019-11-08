@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
+import 'package:loading/loading.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/colors_list.dart';
-import 'package:paperflix_rg/screens/new_resume/widgets/select_skill.dart';
+import 'package:paperflix_rg/screens/new_resume/widgets/select_suggestion.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/single_list.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/form_area.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/form_phone.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/form_text.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/single_form.dart';
+import 'package:paperflix_rg/widgets/custom_chip.dart';
+import 'package:paperflix_rg/widgets/social_list.dart';
 import './new_resume_view_model.dart';
 
 class NewResumeView extends NewResumeViewModel {
@@ -32,16 +36,16 @@ class NewResumeView extends NewResumeViewModel {
               style: TextStyle(
                 fontFamily: "SFP_Text",
               )),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () => skipStep(context),
-              textColor: Color(0xFFff4757),
-              child: Text("${AppTranslations.of(context).text("skip")}",
-                  style: TextStyle(
-                    fontFamily: "SFP_Text",
-                  )),
-            )
-          ],
+          // actions: <Widget>[
+          //   FlatButton(
+          //     onPressed: () => skipStep(context),
+          //     textColor: Color(0xFFff4757),
+          //     child: Text("${AppTranslations.of(context).text("skip")}",
+          //         style: TextStyle(
+          //           fontFamily: "SFP_Text",
+          //         )),
+          //   )
+          // ],
         ),
         body: Stack(
           children: <Widget>[
@@ -193,14 +197,22 @@ class NewResumeView extends NewResumeViewModel {
                                                   )),
                                             ]),
                                             SizedBox(height: 10),
-                                            Text(
-                                                "${AppTranslations.of(context).text("employment-history-v1")}",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontFamily: "SFP_Text",
-                                                )),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 2
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("employment-history-v1")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
                                           ]),
                                       Column(
                                           crossAxisAlignment:
@@ -237,14 +249,22 @@ class NewResumeView extends NewResumeViewModel {
                                                   )),
                                             ]),
                                             SizedBox(height: 10),
-                                            Text(
-                                                "${AppTranslations.of(context).text("education-v1")}",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontFamily: "SFP_Text",
-                                                )),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 3
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("education-v1")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
                                             SizedBox(height: 19),
                                           ]),
                                       Column(
@@ -269,11 +289,19 @@ class NewResumeView extends NewResumeViewModel {
                                                         : 22,
                                                     color: Colors.white),
                                               ),
+                                              Container(
+                                                  width: 100,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
                                             ]),
                                             SizedBox(height: 10),
                                             Row(
                                               children: <Widget>[
-                                                SizedBox(width: 5),
+                                                currentStep == 4
+                                                    ? SizedBox(width: 10)
+                                                    : SizedBox(),
                                                 Text(
                                                     "${AppTranslations.of(context).text("skills-v1")}",
                                                     textAlign: TextAlign.center,
@@ -287,11 +315,316 @@ class NewResumeView extends NewResumeViewModel {
                                             ),
                                             SizedBox(height: 19),
                                           ]),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(children: <Widget>[
+                                              Container(
+                                                  width: 16,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                              Container(
+                                                width:
+                                                    currentStep == 5 ? 60 : 50,
+                                                height:
+                                                    currentStep == 5 ? 60 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Icon(
+                                                    Icons.directions_run,
+                                                    size: currentStep == 5
+                                                        ? 33
+                                                        : 22,
+                                                    color: Colors.white),
+                                              ),
+                                              Container(
+                                                  width: 100,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                            ]),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 5
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("out-school-activities-v2")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
+                                          ]),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(children: <Widget>[
+                                              Container(
+                                                  width: 16,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                              Container(
+                                                width:
+                                                    currentStep == 6 ? 60 : 50,
+                                                height:
+                                                    currentStep == 6 ? 60 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Icon(Icons.language,
+                                                    size: currentStep == 6
+                                                        ? 33
+                                                        : 22,
+                                                    color: Colors.white),
+                                              ),
+                                              Container(
+                                                  width: 100,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                            ]),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 6
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("languages")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
+                                            SizedBox(height: 19),
+                                          ]),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(children: <Widget>[
+                                              Container(
+                                                width:
+                                                    currentStep == 7 ? 60 : 50,
+                                                height:
+                                                    currentStep == 7 ? 60 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Icon(Icons.language,
+                                                    size: currentStep == 7
+                                                        ? 33
+                                                        : 22,
+                                                    color: Colors.white),
+                                              ),
+                                              Container(
+                                                  width: 100,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                            ]),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 7
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("hobby")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
+                                            SizedBox(height: 19),
+                                          ]),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(children: <Widget>[
+                                              Container(
+                                                  width: 19,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                              Container(
+                                                width:
+                                                    currentStep == 8 ? 60 : 50,
+                                                height:
+                                                    currentStep == 8 ? 60 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Icon(Icons.bookmark,
+                                                    size: currentStep == 8
+                                                        ? 33
+                                                        : 22,
+                                                    color: Colors.white),
+                                              ),
+                                              Container(
+                                                  width: 100,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                            ]),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 8
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("references")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
+                                            SizedBox(height: 19),
+                                          ]),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(children: <Widget>[
+                                              Container(
+                                                  width: 8,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                              Container(
+                                                width:
+                                                    currentStep == 9 ? 60 : 50,
+                                                height:
+                                                    currentStep == 9 ? 60 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Icon(Icons.bookmark,
+                                                    size: currentStep == 9
+                                                        ? 33
+                                                        : 22,
+                                                    color: Colors.white),
+                                              ),
+                                              Container(
+                                                  width: 100,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                            ]),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 9
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("courses")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
+                                            SizedBox(height: 19),
+                                          ]),
+                                      Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(children: <Widget>[
+                                              Container(
+                                                  width: 12,
+                                                  height: 3,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                  )),
+                                              Container(
+                                                width:
+                                                    currentStep == 10 ? 60 : 50,
+                                                height:
+                                                    currentStep == 10 ? 60 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xFF2dd573),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Icon(Icons.public,
+                                                    size: currentStep == 10
+                                                        ? 33
+                                                        : 22,
+                                                    color: Colors.white),
+                                              ),
+                                            ]),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: <Widget>[
+                                                currentStep == 10
+                                                    ? SizedBox(width: 5)
+                                                    : SizedBox(),
+                                                Text(
+                                                    "${AppTranslations.of(context).text("web-and-socials-v2")}",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontFamily: "SFP_Text",
+                                                    )),
+                                              ],
+                                            ),
+                                          ]),
                                       SizedBox(width: 20),
                                     ],
                                   ),
                                 ],
-                              )
+                              ),
                             ]),
                       ),
                       Expanded(
@@ -476,6 +809,12 @@ class NewResumeView extends NewResumeViewModel {
                                       ),
                                       FormText(
                                         label:
+                                            "${AppTranslations.of(context).text("nationality")}",
+                                        hint: "e.g. United State America",
+                                        controller: nationalityController,
+                                      ),
+                                      FormText(
+                                        label:
                                             "${AppTranslations.of(context).text("driving-licenses")}",
                                         hint: "...",
                                         question: true,
@@ -527,7 +866,7 @@ class NewResumeView extends NewResumeViewModel {
                                                 value:
                                                     "${employmentList[i]['job_title']} at ${employmentList[i]['company']}",
                                                 time:
-                                                    "${DateFormat('MMMM yyyy').format(employmentList[i]['start_date'])} - ${employmentList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(employmentList[i]['end_date'])}",
+                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(employmentList[i]['start_date']))} - ${employmentList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(employmentList[i]['end_date']))}",
                                                 subvalue:
                                                     "${employmentList[i]['description']}",
                                                 param1:
@@ -785,7 +1124,7 @@ class NewResumeView extends NewResumeViewModel {
                                                 value:
                                                     "${educationList[i]['university']}",
                                                 time:
-                                                    "${DateFormat('MMMM yyyy').format(educationList[i]['start_date'])} - ${educationList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(educationList[i]['end_date'])}",
+                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(educationList[i]['start_date']))} - ${educationList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(educationList[i]['end_date']))}",
                                                 subvalue:
                                                     "${educationList[i]['degree']}",
                                                 param1:
@@ -1043,7 +1382,8 @@ class NewResumeView extends NewResumeViewModel {
                                                     "${skillsList[i]['skill_type']}",
                                                 subvalue:
                                                     "${skillsList[i]['level'] == "beginner" ? AppTranslations.of(context).text("beginner") : skillsList[i]['level'] == "intermediate" ? AppTranslations.of(context).text("intermediate") : skillsList[i]['level'] == "advanced" ? AppTranslations.of(context).text("advanced") : skillsList[i]['level'] == "expert" ? AppTranslations.of(context).text("expert") : ""}",
-                                                color: indexColor,
+                                                color:
+                                                    colors[random.nextInt(6)],
                                                 param1:
                                                     "${skillsList[i]['skill_type']}",
                                                 param2:
@@ -1061,7 +1401,7 @@ class NewResumeView extends NewResumeViewModel {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: <Widget>[
-                                                        SelectSkill(
+                                                        SelectSuggestion(
                                                           label:
                                                               "${AppTranslations.of(context).text("type-skill")}",
                                                           hint:
@@ -1069,7 +1409,7 @@ class NewResumeView extends NewResumeViewModel {
                                                           controller:
                                                               skillsTypeSkillController,
                                                           getSuggestions:
-                                                              getSuggestions,
+                                                              getSuggestionSkill,
                                                         ),
                                                         SizedBox(height: 10),
                                                         Text(
@@ -1138,6 +1478,993 @@ class NewResumeView extends NewResumeViewModel {
                                             ),
                                           ),
                                           SizedBox(height: 20)
+                                        ]))
+                              else if (currentStep == 5)
+                                Container(
+                                    width: screenSize.width,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 15),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                outSchoolActivitiesList.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              return SingleList(
+                                                icon: Icons.directions_run,
+                                                value:
+                                                    "${outSchoolActivitiesList[i]['function_title']} at ${outSchoolActivitiesList[i]['organization']}",
+                                                time:
+                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(outSchoolActivitiesList[i]['start_date']))} - ${outSchoolActivitiesList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(outSchoolActivitiesList[i]['end_date']))}",
+                                                subvalue:
+                                                    "${outSchoolActivitiesList[i]['description']}",
+                                                param1:
+                                                    "${outSchoolActivitiesList[i]['function_title']}",
+                                                param2:
+                                                    "${outSchoolActivitiesList[i]['organization']}",
+                                                onDelete:
+                                                    removeOutSchoolActivities,
+                                              );
+                                            },
+                                          ),
+                                          addOutSchoolActivities
+                                              ? Container(
+                                                  width: screenSize.width,
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Expanded(
+                                                            child: FormText(
+                                                              label:
+                                                                  "${AppTranslations.of(context).text("function_title")}",
+                                                              hint:
+                                                                  "e.g. Chairman",
+                                                              controller:
+                                                                  outSchoolFunctionTitleController,
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          Expanded(
+                                                            child: FormText(
+                                                              label:
+                                                                  "${AppTranslations.of(context).text("organization")}",
+                                                              hint:
+                                                                  "e.g. Hacker United",
+                                                              controller:
+                                                                  outSchoolOrganizationController,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Expanded(
+                                                            child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: <
+                                                                    Widget>[
+                                                                  SizedBox(
+                                                                      height:
+                                                                          10),
+                                                                  Text(
+                                                                    "${AppTranslations.of(context).text("start-date")}",
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            "SFP_Text",
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        fontSize:
+                                                                            13,
+                                                                        color: Color(
+                                                                            0xFF2f3542)),
+                                                                  ),
+                                                                  SizedBox(
+                                                                      height:
+                                                                          7),
+                                                                  RaisedButton(
+                                                                    padding: EdgeInsets.only(
+                                                                        left:
+                                                                            20,
+                                                                        right:
+                                                                            20,
+                                                                        top: 12,
+                                                                        bottom:
+                                                                            12),
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                    ),
+                                                                    color: Color(
+                                                                        0xFFf1f2f6),
+                                                                    textColor:
+                                                                        Color(
+                                                                            0xFF2F3542),
+                                                                    onPressed: () =>
+                                                                        selectStartDate(
+                                                                            context),
+                                                                    child:
+                                                                        Container(
+                                                                      width: screenSize
+                                                                          .width,
+                                                                      child: Text(
+                                                                          "${DateFormat('MMMM yyyy').format(selectedStartDate)}",
+                                                                          textAlign:
+                                                                              TextAlign.left),
+                                                                    ),
+                                                                  ),
+                                                                ]),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          outSchoolPresent
+                                                              ? SizedBox()
+                                                              : Expanded(
+                                                                  child: Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                            height:
+                                                                                10),
+                                                                        Text(
+                                                                          "${AppTranslations.of(context).text("end-date")}",
+                                                                          style: TextStyle(
+                                                                              fontFamily: "SFP_Text",
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontSize: 13,
+                                                                              color: Color(0xFF2f3542)),
+                                                                        ),
+                                                                        SizedBox(
+                                                                            height:
+                                                                                7),
+                                                                        RaisedButton(
+                                                                          padding: EdgeInsets.only(
+                                                                              left: 20,
+                                                                              right: 20,
+                                                                              top: 12,
+                                                                              bottom: 12),
+                                                                          shape:
+                                                                              RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(10),
+                                                                          ),
+                                                                          color:
+                                                                              Color(0xFFf1f2f6),
+                                                                          textColor:
+                                                                              Color(0xFF2F3542),
+                                                                          onPressed: () =>
+                                                                              selectEndDate(context),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                screenSize.width,
+                                                                            child:
+                                                                                Text("${DateFormat('MMMM yyyy').format(selectedEndDate)}", textAlign: TextAlign.left),
+                                                                          ),
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Checkbox(
+                                                            activeColor: Color(
+                                                                0xFF2f3542),
+                                                            materialTapTargetSize:
+                                                                MaterialTapTargetSize
+                                                                    .padded,
+                                                            value:
+                                                                outSchoolPresent,
+                                                            onChanged:
+                                                                (bool value) {
+                                                              setState(() {
+                                                                outSchoolPresent =
+                                                                    value;
+                                                              });
+                                                            },
+                                                          ),
+                                                          Flexible(
+                                                              child: Text(
+                                                                  '${AppTranslations.of(context).text("until-now")}',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        "SFP_Text",
+                                                                    fontSize:
+                                                                        13.3,
+                                                                    color: Color(
+                                                                        0xFF2f3542),
+                                                                  )))
+                                                        ],
+                                                      ),
+                                                      FormText(
+                                                        label:
+                                                            "${AppTranslations.of(context).text("city")}",
+                                                        hint:
+                                                            "e.g. California, New York",
+                                                        controller:
+                                                            outSchoolCityController,
+                                                      ),
+                                                      FormArea(
+                                                        label:
+                                                            "${AppTranslations.of(context).text("description")}",
+                                                        hint:
+                                                            "e.g. I'am take responbilities with all of the member in this organization.",
+                                                        minLines: 10,
+                                                        maxLines: 20,
+                                                        controller:
+                                                            outSchoolDescriptionController,
+                                                      )
+                                                    ],
+                                                  ))
+                                              : Container(),
+                                          addOutSchoolActivities
+                                              ? SizedBox(height: 20)
+                                              : SizedBox(height: 10),
+                                          Center(
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              onPressed: () =>
+                                                  onBtnAddOutSchool(),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15, horizontal: 20),
+                                              color: Color(0xFF2dd573),
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("out-school-activities")}",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20)
+                                        ]))
+                              else if (currentStep == 6)
+                                Container(
+                                    width: screenSize.width,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 15),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: languagesList.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              return ColorsList(
+                                                value:
+                                                    "${languagesList[i]['language']}",
+                                                subvalue:
+                                                    "${languagesList[i]['level'] == "beginner" ? AppTranslations.of(context).text("beginner") : languagesList[i]['level'] == "conversational" ? AppTranslations.of(context).text("conversational") : languagesList[i]['level'] == "fluent" ? AppTranslations.of(context).text("fluent") : languagesList[i]['level'] == "native" ? AppTranslations.of(context).text("native") : ""}",
+                                                color:
+                                                    colors[random.nextInt(6)],
+                                                param1:
+                                                    "${languagesList[i]['language']}",
+                                                param2:
+                                                    "${languagesList[i]['level']}",
+                                                onDelete: removeLanguages,
+                                              );
+                                            },
+                                          ),
+                                          !addLanguages
+                                              ? Container()
+                                              : Container(
+                                                  width: screenSize.width,
+                                                  child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        SelectSuggestion(
+                                                          label:
+                                                              "${AppTranslations.of(context).text("language")}",
+                                                          hint: "e.g. English",
+                                                          controller:
+                                                              languageTextController,
+                                                          getSuggestions:
+                                                              getSuggestionLanguages,
+                                                        ),
+                                                        SizedBox(height: 10),
+                                                        Text(
+                                                          "${AppTranslations.of(context).text("level-mastery")}",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  "SFP_Text",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 13,
+                                                              color: Color(
+                                                                  0xFF2f3542)),
+                                                        ),
+                                                        SizedBox(height: 7),
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      20),
+                                                          width:
+                                                              screenSize.width,
+                                                          decoration: BoxDecoration(
+                                                              color: Color(
+                                                                  0xFFf1f2f6),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                          child:
+                                                              DropdownButtonHideUnderline(
+                                                            child:
+                                                                new DropdownButton(
+                                                              value:
+                                                                  selectedMastery,
+                                                              items:
+                                                                  dropDownMenuMastery,
+                                                              onChanged:
+                                                                  changedDropDownMastery,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ])),
+                                          addLanguages
+                                              ? SizedBox(height: 20)
+                                              : SizedBox(height: 10),
+                                          Center(
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              onPressed: () =>
+                                                  onBtnAddLanguages(),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15, horizontal: 20),
+                                              color: Color(0xFF2dd573),
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("languages")}",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20)
+                                        ]))
+                              else if (currentStep == 7)
+                                Container(
+                                    width: screenSize.width,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 15),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: hobbiesList.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              return CustomChip(
+                                                "${hobbiesList[i]}",
+                                                onDelete: removeHobbies,
+                                              );
+                                            },
+                                          ),
+                                          !addHobbies
+                                              ? Container()
+                                              : Container(
+                                                  width: screenSize.width,
+                                                  child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        SelectSuggestion(
+                                                          label:
+                                                              "${AppTranslations.of(context).text("hobby")}",
+                                                          hint:
+                                                              "e.g. Badminton",
+                                                          controller:
+                                                              hobbiesTextController,
+                                                          getSuggestions:
+                                                              getSuggestionHobbies,
+                                                        ),
+                                                      ])),
+                                          addHobbies
+                                              ? SizedBox(height: 20)
+                                              : SizedBox(height: 10),
+                                          Center(
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              onPressed: () =>
+                                                  onBtnAddHobbies(),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15, horizontal: 20),
+                                              color: Color(0xFF2dd573),
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("hobby")}",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20)
+                                        ]))
+                              else if (currentStep == 8)
+                                Container(
+                                    width: screenSize.width,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 15),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: referencesList.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              return SingleList(
+                                                image:
+                                                    "${referencesList[i]['image'] ?? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"}",
+                                                value:
+                                                    "${referencesList[i]['fullname']}",
+                                                time:
+                                                    "${referencesList[i]['company']}",
+                                                param1:
+                                                    "${referencesList[i]['fullname']}",
+                                                param2:
+                                                    "${referencesList[i]['company']}",
+                                                onDelete: removeReferences,
+                                              );
+                                            },
+                                          ),
+                                          !addReferences
+                                              ? Container()
+                                              : Container(
+                                                  width: screenSize.width,
+                                                  child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        Center(
+                                                          child: Stack(
+                                                            children: <Widget>[
+                                                              Container(
+                                                                height: 120,
+                                                                width: 120,
+                                                                // margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                                                alignment: Alignment
+                                                                    .bottomCenter,
+                                                                decoration: BoxDecoration(
+                                                                    color: Color(
+                                                                        0xFFf1f2f6),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15)),
+                                                                child: imageUrl !=
+                                                                        null
+                                                                    ? SizedBox(
+                                                                        height:
+                                                                            120,
+                                                                        width:
+                                                                            120,
+                                                                        child: ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(15),
+                                                                            child: Image.network("$imageUrl")))
+                                                                    : SizedBox(
+                                                                        height:
+                                                                            100,
+                                                                        width:
+                                                                            100,
+                                                                        child: Image.asset(
+                                                                            "assets/boy.png"),
+                                                                      ),
+                                                              ),
+                                                              Positioned(
+                                                                right: 5,
+                                                                bottom: 5,
+                                                                child:
+                                                                    Container(
+                                                                  height: 30,
+                                                                  width: 30,
+                                                                  child:
+                                                                      RaisedButton(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    onPressed: () =>
+                                                                        imageSelect(
+                                                                            context),
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                    ),
+                                                                    color: Color(
+                                                                        0xFF747d8c),
+                                                                    textColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .camera_alt,
+                                                                      size: 18,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 30),
+                                                        Row(
+                                                          children: <Widget>[
+                                                            Expanded(
+                                                              child: FormText(
+                                                                label:
+                                                                    "${AppTranslations.of(context).text("full-name")}",
+                                                                hint:
+                                                                    "e.g. John Doe",
+                                                                controller:
+                                                                    referencesFullnameController,
+                                                              ),
+                                                            ),
+                                                            SizedBox(width: 10),
+                                                            Expanded(
+                                                              child: FormText(
+                                                                label:
+                                                                    "${AppTranslations.of(context).text("company")}",
+                                                                hint:
+                                                                    "e.g. Google",
+                                                                controller:
+                                                                    referencesCompanyController,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        FormText(
+                                                          label:
+                                                              "${AppTranslations.of(context).text("email")}",
+                                                          hint:
+                                                              "e.g. johndoe@gmail.com",
+                                                          controller:
+                                                              referencesEmailController,
+                                                        ),
+                                                        FormPhone(
+                                                          label:
+                                                              "${AppTranslations.of(context).text("phone-number")}",
+                                                          hint:
+                                                              "e.g. 8123123123",
+                                                          controller:
+                                                              referencesPhoneNumberController,
+                                                          onChange:
+                                                              onCountryCodeReferencesSelect,
+                                                        ),
+                                                        FormArea(
+                                                          label:
+                                                              "${AppTranslations.of(context).text("description")}",
+                                                          hint:
+                                                              "e.g. I'am take responbilities with all of the member in this organization.",
+                                                          minLines: 10,
+                                                          maxLines: 20,
+                                                          controller:
+                                                              referencesDescriptionController,
+                                                        )
+                                                      ])),
+                                          addReferences
+                                              ? SizedBox(height: 20)
+                                              : SizedBox(height: 10),
+                                          Center(
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              onPressed: () =>
+                                                  onBtnAddReferences(),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15, horizontal: 20),
+                                              color: Color(0xFF2dd573),
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("references")}",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20)
+                                        ]))
+                              else if (currentStep == 9)
+                                Container(
+                                    width: screenSize.width,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 15),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: coursesList.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              return SingleList(
+                                                icon: Icons.flag,
+                                                value:
+                                                    "${coursesList[i]['course']} at ${coursesList[i]['institution']}",
+                                                time:
+                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(coursesList[i]['start_date']))} - ${coursesList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(coursesList[i]['end_date']))}",
+                                                param1:
+                                                    "${coursesList[i]['course']}",
+                                                param2:
+                                                    "${coursesList[i]['institution']}",
+                                                onDelete: removeCourse,
+                                              );
+                                            },
+                                          ),
+                                          addCourses
+                                              ? Container(
+                                                  width: screenSize.width,
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Expanded(
+                                                            child: FormText(
+                                                              label:
+                                                                  "${AppTranslations.of(context).text("courses")}",
+                                                              hint:
+                                                                  "e.g. Javascript Website",
+                                                              controller:
+                                                                  coursesTextController,
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          Expanded(
+                                                            child: FormText(
+                                                              label:
+                                                                  "${AppTranslations.of(context).text("institution")}",
+                                                              hint:
+                                                                  "e.g. Nextbyte",
+                                                              controller:
+                                                                  coursesInstitutionController,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Expanded(
+                                                            child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: <
+                                                                    Widget>[
+                                                                  SizedBox(
+                                                                      height:
+                                                                          10),
+                                                                  Text(
+                                                                    "${AppTranslations.of(context).text("start-date")}",
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            "SFP_Text",
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        fontSize:
+                                                                            13,
+                                                                        color: Color(
+                                                                            0xFF2f3542)),
+                                                                  ),
+                                                                  SizedBox(
+                                                                      height:
+                                                                          7),
+                                                                  RaisedButton(
+                                                                    padding: EdgeInsets.only(
+                                                                        left:
+                                                                            20,
+                                                                        right:
+                                                                            20,
+                                                                        top: 12,
+                                                                        bottom:
+                                                                            12),
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                    ),
+                                                                    color: Color(
+                                                                        0xFFf1f2f6),
+                                                                    textColor:
+                                                                        Color(
+                                                                            0xFF2F3542),
+                                                                    onPressed: () =>
+                                                                        selectStartDate(
+                                                                            context),
+                                                                    child:
+                                                                        Container(
+                                                                      width: screenSize
+                                                                          .width,
+                                                                      child: Text(
+                                                                          "${DateFormat('MMMM yyyy').format(selectedStartDate)}",
+                                                                          textAlign:
+                                                                              TextAlign.left),
+                                                                    ),
+                                                                  ),
+                                                                ]),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          coursesPresent
+                                                              ? SizedBox()
+                                                              : Expanded(
+                                                                  child: Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                            height:
+                                                                                10),
+                                                                        Text(
+                                                                          "${AppTranslations.of(context).text("end-date")}",
+                                                                          style: TextStyle(
+                                                                              fontFamily: "SFP_Text",
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontSize: 13,
+                                                                              color: Color(0xFF2f3542)),
+                                                                        ),
+                                                                        SizedBox(
+                                                                            height:
+                                                                                7),
+                                                                        RaisedButton(
+                                                                          padding: EdgeInsets.only(
+                                                                              left: 20,
+                                                                              right: 20,
+                                                                              top: 12,
+                                                                              bottom: 12),
+                                                                          shape:
+                                                                              RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(10),
+                                                                          ),
+                                                                          color:
+                                                                              Color(0xFFf1f2f6),
+                                                                          textColor:
+                                                                              Color(0xFF2F3542),
+                                                                          onPressed: () =>
+                                                                              selectEndDate(context),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                screenSize.width,
+                                                                            child:
+                                                                                Text("${DateFormat('MMMM yyyy').format(selectedEndDate)}", textAlign: TextAlign.left),
+                                                                          ),
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: <Widget>[
+                                                          Checkbox(
+                                                            activeColor: Color(
+                                                                0xFF2f3542),
+                                                            materialTapTargetSize:
+                                                                MaterialTapTargetSize
+                                                                    .padded,
+                                                            value:
+                                                                coursesPresent,
+                                                            onChanged:
+                                                                (bool value) {
+                                                              setState(() {
+                                                                coursesPresent =
+                                                                    value;
+                                                              });
+                                                            },
+                                                          ),
+                                                          Flexible(
+                                                              child: Text(
+                                                                  '${AppTranslations.of(context).text("until-now")}',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        "SFP_Text",
+                                                                    fontSize:
+                                                                        13.3,
+                                                                    color: Color(
+                                                                        0xFF2f3542),
+                                                                  )))
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ))
+                                              : Container(),
+                                          addCourses
+                                              ? SizedBox(height: 20)
+                                              : SizedBox(height: 10),
+                                          Center(
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              onPressed: () =>
+                                                  onBtnAddCourses(),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15, horizontal: 20),
+                                              color: Color(0xFF2dd573),
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("courses")}",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20)
+                                        ]))
+                              else if (currentStep == 10)
+                                Container(
+                                    width: screenSize.width,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 15),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: socialList.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              return SocialList(
+                                                type:
+                                                    "${socialList[i]['type']}",
+                                                value:
+                                                    "${socialList[i]['link']}",
+                                                onDelete: removeSocial,
+                                              );
+                                            },
+                                          ),
+                                          addSocial
+                                              ? Container(
+                                                  width: screenSize.width,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: <Widget>[
+                                                      SizedBox(height: 10),
+                                                      Text(
+                                                        "${AppTranslations.of(context).text("socials")}",
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                "SFP_Text",
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 13,
+                                                            color: Color(
+                                                                0xFF2f3542)),
+                                                      ),
+                                                      SizedBox(height: 7),
+                                                      Container(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 20),
+                                                        width: screenSize.width,
+                                                        decoration: BoxDecoration(
+                                                            color: Color(
+                                                                0xFFf1f2f6),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        child:
+                                                            DropdownButtonHideUnderline(
+                                                          child:
+                                                              new DropdownButton(
+                                                            value:
+                                                                currentSocial,
+                                                            items:
+                                                                dropDownMenuSocial,
+                                                            onChanged:
+                                                                changedDropDownSocial,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      FormText(
+                                                        label:
+                                                            "${AppTranslations.of(context).text("link")}",
+                                                        hint:
+                                                            "e.g. https://github.com/arsyadsr09",
+                                                        controller:
+                                                            socialLinkController,
+                                                      ),
+                                                    ],
+                                                  ))
+                                              : Container(),
+                                          addSocial
+                                              ? SizedBox(height: 20)
+                                              : SizedBox(height: 10),
+                                          Center(
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30)),
+                                              onPressed: () => onBtnAddSocial(),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 15, horizontal: 20),
+                                              color: Color(0xFF2dd573),
+                                              textColor: Colors.white,
+                                              child: Text(
+                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("socials")}",
+                                                style: TextStyle(
+                                                    fontFamily: "SFP_Text",
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20)
                                         ])),
                             ],
                           ),
@@ -1183,19 +2510,24 @@ class NewResumeView extends NewResumeViewModel {
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadiusDirectional.circular(0)),
-                          onPressed: () => changeStep(context),
+                          onPressed: () => isLoading ? {} : changeStep(context),
                           color: Color(0xFF2dd573),
                           textColor: Colors.white,
-                          child: Text(
-                            currentStep < 4
-                                ? "${AppTranslations.of(context).text("next").toUpperCase()}"
-                                : "${AppTranslations.of(context).text("finish").toUpperCase()}",
-                            style: TextStyle(
-                                letterSpacing: 1,
-                                fontFamily: "SFP_Text",
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900),
-                          ),
+                          child: isLoading
+                              ? Center(
+                                  child: Loading(
+                                      indicator: BallSpinFadeLoaderIndicator(),
+                                      size: 20.0))
+                              : Text(
+                                  currentStep < 10
+                                      ? "${AppTranslations.of(context).text("next").toUpperCase()}"
+                                      : "${AppTranslations.of(context).text("finish").toUpperCase()}",
+                                  style: TextStyle(
+                                      letterSpacing: 1,
+                                      fontFamily: "SFP_Text",
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w900),
+                                ),
                         ),
                       ),
                     )

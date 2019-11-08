@@ -5,7 +5,13 @@ class ColorsList extends StatelessWidget {
   final String value, subvalue, param1, param2;
   final onDelete;
 
-  ColorsList({this.color, this.value, this.subvalue, this.onDelete, this.param1, this.param2});
+  ColorsList(
+      {this.color,
+      this.value,
+      this.subvalue,
+      this.onDelete,
+      this.param1,
+      this.param2});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +47,7 @@ class ColorsList extends StatelessWidget {
             ],
           ),
           IconButton(
-            icon: Icon(Icons.delete),
+            icon: Icon(Icons.close),
             onPressed: () => onDelete(param1, param2),
           )
         ],

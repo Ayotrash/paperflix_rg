@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:paperflix_rg/config/config.dart';
 import 'package:paperflix_rg/localization/app_translations_delegate.dart';
 import 'package:paperflix_rg/localization/application.dart';
 import 'package:paperflix_rg/routes.dart';
 import 'package:paperflix_rg/screens/authentication/authentication.dart';
 import 'package:paperflix_rg/screens/home/home.dart';
+import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
+import 'package:paperflix_rg/widgets/without_resume_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -25,11 +28,12 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   AppTranslationsDelegate _newLocaleDelegate;
   bool isLogin = false;
+  bool isFillResume = true;
 
   Future<void> getLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      isLogin = prefs.getBool('isLogin');
+      isLogin = prefs.getBool('isLogin') ?? false;
     });
   }
 
@@ -39,6 +43,36 @@ class _MainAppState extends State<MainApp> {
     getLogin();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
+    storage.ready.then((_) {
+      Map _userProfile = Map();
+      _userProfile = storage.getItem('userProfile') ?? Map();
+      print(_userProfile);
+      if (_userProfile != {}) {
+        if (_userProfile['place_of_birth'].length <= 0 ||
+            _userProfile['phone_number'].length <= 0 ||
+            _userProfile['job_title'].length <= 0 ||
+            _userProfile['country'].length <= 0 ||
+            _userProfile['province'].length <= 0 ||
+            _userProfile['address'].length <= 0 ||
+            _userProfile['city'].length <= 0 ||
+            _userProfile['about_you'].length <= 0 ||
+            _userProfile['employment'].length <= 0 ||
+            _userProfile['education'].length <= 0 ||
+            _userProfile['skills'].length <= 0) {
+          print("Not Go Home");
+          setState(() {
+            isFillResume = false;
+          });
+          print(isFillResume);
+        } else {
+          print("Go Home");
+          setState(() {
+            isFillResume = true;
+          });
+          print(isFillResume);
+        }
+      }
+    });
     // getLocate();
   }
 
@@ -75,7 +109,10 @@ class _MainAppState extends State<MainApp> {
         const Locale('en', ''),
         const Locale('id', ''),
       ],
-      home: !isLogin ? Authentication() : Home(),
+      // home: !isLogin
+      //     ? Authentication()
+      //     : isLogin && !isFillResume ? WithoutResumeBanner() : Home(),
+      home: NewResume(),
       routes: routes,
     );
   }

@@ -114,6 +114,14 @@ class RegisterView extends RegisterViewModel {
                             fontWeight: FontWeight.w500,
                           ),
                           controller: firstnameController,
+                          onChanged: (String text) {
+                            if (errorFirstname) {
+                              setState(() {
+                                errorFirstname = false;
+                                messageFirstname = "";
+                              });
+                            }
+                          },
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
                             hintText: "e.g. John",
@@ -164,6 +172,14 @@ class RegisterView extends RegisterViewModel {
                             fontWeight: FontWeight.w500,
                           ),
                           controller: lastnameController,
+                          onChanged: (String text) {
+                            if (errorLastname) {
+                              setState(() {
+                                errorLastname = false;
+                                messageLastname = "";
+                              });
+                            }
+                          },
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
                             hintText: "e.g. Doe",
@@ -215,6 +231,15 @@ class RegisterView extends RegisterViewModel {
                           ),
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
+                          onChanged: (String text) {
+                            if (errorEmail || errorEmailNotFill) {
+                              setState(() {
+                                errorEmail = false;
+                                errorEmailNotFill = false;
+                                messageEmail = "";
+                              });
+                            }
+                          },
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
                             hintText: "e.g. johndoe@gmail.com",
@@ -291,6 +316,14 @@ class RegisterView extends RegisterViewModel {
                           ),
                           obscureText: true,
                           controller: passwordController,
+                          onChanged: (String text) {
+                            if (errorPassword) {
+                              setState(() {
+                                errorPassword = false;
+                                messagePassword = "";
+                              });
+                            }
+                          },
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
                             hintText: "************",
@@ -356,6 +389,14 @@ class RegisterView extends RegisterViewModel {
                           ),
                           controller: confirmPasswordController,
                           obscureText: true,
+                          onChanged: (String text) {
+                            if (errorConfirm) {
+                              setState(() {
+                                errorConfirm = false;
+                                messageConfirm = "";
+                              });
+                            }
+                          },
                           decoration: InputDecoration(
                             fillColor: Color(0xFFced6e0),
                             hintText: "************",
@@ -430,7 +471,7 @@ class RegisterView extends RegisterViewModel {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   onPressed: () =>
-                      terms || isLoading ? onBtnRegisterPressed() : {},
+                      terms || !isLoading ? onBtnRegisterPressed() : {},
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   color: terms ? Color(0xFF2dd573) : Color(0xFF81d4a3),
                   textColor: Colors.white,

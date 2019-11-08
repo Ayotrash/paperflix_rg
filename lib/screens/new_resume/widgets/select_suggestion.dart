@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class SelectSkill extends StatelessWidget {
+class SelectSuggestion extends StatelessWidget {
   final TextEditingController controller;
   final String label, hint;
   final bool question;
   final getSuggestions;
 
-  SelectSkill(
+  SelectSuggestion(
       {this.controller,
       this.label,
       this.hint,
