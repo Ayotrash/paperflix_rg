@@ -22,8 +22,23 @@ abstract class HomeViewModel extends State<Home> {
 
   @override
   void initState() {
+    storage.ready.then((_) {
+      userProfile = storage.getItem('userProfile');
+      if (userProfile['avatar'] != null) {
+        profileImage = true;
+      } else {
+        profileImage = false;
+      }
+      if (userProfile['gender'] == "male") {
+        gender = 1;
+      } else {
+        gender = 0;
+      }
+    });
     super.initState();
-    userProfile = storage.getItem('userProfile');
-    print(storage.getItem('userProfile'));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print(profileImage);
+      print(gender);
+    });
   }
 }

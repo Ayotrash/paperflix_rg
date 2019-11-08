@@ -39,7 +39,8 @@ class HomeView extends HomeViewModel {
                               height: 35,
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
-                                  child: Image.asset("assets/arsyad.jpg")),
+                                  child: Image.network(
+                                      "${userProfile['avatar'] == null || widget.avatar == null ? gender == 0 || widget.gender == 'female' ? 'https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6' : 'https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7' : '${userProfile["avatar"] ?? widget.avatar}'}")),
                             )
                           : Container(
                               height: 35,
@@ -52,7 +53,8 @@ class HomeView extends HomeViewModel {
                               child: SizedBox(
                                 height: 30,
                                 width: 30,
-                                child: gender == 0
+                                child: userProfile['gender'] == 0 ||
+                                        widget.gender == "female"
                                     ? Image.asset("assets/girl.png")
                                     : Image.asset("assets/boy.png"),
                               ),
@@ -63,7 +65,7 @@ class HomeView extends HomeViewModel {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "${AppTranslations.of(context).text("hi")}, Arsyad",
+                            "${AppTranslations.of(context).text("hi")}, ${userProfile['firstname'] ?? widget.firstname}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontFamily: "SFP_Text",
