@@ -18,7 +18,7 @@ class Providers {
           "password": password,
           "avatar": avatar,
           "gender": gender,
-          "deviceInfo": deviceInfo,
+          "device_info": deviceInfo,
         },
         options: Options(
             followRedirects: false,
