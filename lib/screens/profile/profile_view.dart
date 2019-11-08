@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
-import 'package:paperflix_rg/screens/profile/wigets/colors_list.dart';
-import 'package:paperflix_rg/screens/profile/wigets/custom_chip.dart';
-import 'package:paperflix_rg/screens/profile/wigets/single_form.dart';
-import 'package:paperflix_rg/screens/profile/wigets/single_list.dart';
-import 'package:paperflix_rg/screens/profile/wigets/social_list.dart';
+import 'package:paperflix_rg/screens/profile/widgets/colors_list.dart';
+import 'package:paperflix_rg/screens/profile/widgets/single_form.dart';
+import 'package:paperflix_rg/screens/profile/widgets/single_list.dart';
+import 'package:paperflix_rg/widgets/custom_chip.dart';
+import 'package:paperflix_rg/widgets/social_list.dart';
 import './profile_view_model.dart';
 
 class ProfileView extends ProfileViewModel {
@@ -96,37 +97,41 @@ class ProfileView extends ProfileViewModel {
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("full-name")}",
-                              value: "Arsyad Sukma Ramadhan",
+                              value:
+                                  "${userProfile['firstname'] ?? ""} ${userProfile['lastname'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("gender")}",
-                              value: "Male",
+                              value:
+                                  "${userProfile['gender'] == "male" ? "Male" : "Female" ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("email")}",
-                              value: "blacklistdark1987@gmail.com",
+                              value: "${userProfile['email'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("birth-date")}",
-                              value: "30 Desember 2000",
+                              value:
+                                  "${DateFormat('yyyy-MM-dd').format(DateTime.fromMillisecondsSinceEpoch(userProfile['birth_date'] ?? DateTime.now().millisecondsSinceEpoch)) ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("place-of-birth")}",
-                              value: "Malang, Indonesia",
+                              value: "${userProfile['place_of_birth'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("phone-number")}",
-                              value: "+62 812 8486 4756",
+                              value:
+                                  "${userProfile['country_code'] ?? ""} ${userProfile['phone_number'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("job-title")}",
-                              value: "Royal Programmer",
+                              value: "${userProfile['job_title'] ?? ""}",
                             ),
                             SizedBox(height: 30),
                             Text(
@@ -140,33 +145,32 @@ class ProfileView extends ProfileViewModel {
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("country")}",
-                              value: "Indonesia",
+                              value: "${userProfile['country'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("province")}",
-                              value: "DKI Jakarta",
+                              value: "${userProfile['province'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("city")}",
-                              value: "East Jakarta",
+                              value: "${userProfile['city'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("address")}",
-                              value:
-                                  "Perum Asrikaton Blok G3/8. Pakis, Kab. Malang",
+                              value: "${userProfile['address'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("nationality")}",
-                              value: "Indonesian",
+                              value: "${userProfile['nationality'] ?? ""}",
                             ),
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("driving-licenses")}",
-                              value: "Indonesia",
+                              value: "${userProfile['driving_licenses'] ?? ""}",
                             ),
                           ],
                         ),
@@ -181,8 +185,8 @@ class ProfileView extends ProfileViewModel {
                                     height: 140,
                                     child: ClipRRect(
                                         borderRadius: BorderRadius.circular(15),
-                                        child:
-                                            Image.asset("assets/arsyad.jpg")),
+                                        child: Image.network(
+                                            "${userProfile['avatar'] == null ? gender == 0 ? 'https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6' : 'https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7' : "${userProfile['avatar']}"}")),
                                   )
                                 : Container(
                                     height: 140,
@@ -276,8 +280,7 @@ class ProfileView extends ProfileViewModel {
                             SingleForm(
                               label:
                                   "${AppTranslations.of(context).text("about-you")}",
-                              value:
-                                  "\"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci unde beatae quasi possimus quisquam magni hic pariatur temporibus! Quis quaerat quos ipsam voluptatum nemo, enim maxime sed autem quae? Eum corporis, error cum ad aliquam in molestias deserunt perspiciatis.\"",
+                              value: "${userProfile['about_you'] ?? ""}",
                             ),
                             SizedBox(height: 10),
                             Center(
@@ -353,17 +356,20 @@ class ProfileView extends ProfileViewModel {
                                       color: Color(0xFF2f3542)),
                                 ),
                                 SizedBox(height: 15),
-                                SingleList(
-                                  icon: Icons.work,
-                                  value: "Software Engineer at Paperflix",
-                                  subvalue:
-                                      "Feb 2019 - ${AppTranslations.of(context).text("present")}",
-                                ),
-                                SingleList(
-                                  icon: Icons.work,
-                                  value: "PRO Gamers at Nextbyte",
-                                  subvalue:
-                                      "Feb 2019 - ${AppTranslations.of(context).text("present")}",
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      userProfile['employment'].length ?? 0,
+                                  itemBuilder: (context, i) {
+                                    return SingleList(
+                                      icon: Icons.work,
+                                      value:
+                                          "${userProfile['employment'][i]['job_title']} at ${userProfile['employment'][i]['company']}",
+                                      subvalue:
+                                          "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(userProfile['employment'][i]['start_date']))} - ${userProfile['employment'][i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(userProfile['employment'][i]['end_date']))}",
+                                    );
+                                  },
                                 ),
                                 SizedBox(height: 20)
                               ])),
@@ -446,16 +452,20 @@ class ProfileView extends ProfileViewModel {
                                       color: Color(0xFF2f3542)),
                                 ),
                                 SizedBox(height: 15),
-                                SingleList(
-                                  icon: Icons.school,
-                                  value: "E-Sport at ITB",
-                                  subvalue:
-                                      "Feb 2018 - ${AppTranslations.of(context).text("present")}",
-                                ),
-                                SingleList(
-                                  icon: Icons.school,
-                                  value: "SMKN 5 Malang",
-                                  subvalue: "Feb 2016 - Mar 2018",
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      userProfile['education'].length ?? 0,
+                                  itemBuilder: (context, i) {
+                                    return SingleList(
+                                      icon: Icons.work,
+                                      value:
+                                          "${userProfile['education'][i]['degree']} at ${userProfile['education'][i]['university']}",
+                                      subvalue:
+                                          "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(userProfile['education'][i]['start_date']))} - ${userProfile['education'][i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(userProfile['education'][i]['end_date']))}",
+                                    );
+                                  },
                                 ),
                                 SizedBox(height: 20)
                               ])),
@@ -538,26 +548,20 @@ class ProfileView extends ProfileViewModel {
                                       color: Color(0xFF2f3542)),
                                 ),
                                 SizedBox(height: 15),
-                                ColorsList(
-                                    color: 0xFF2f3542,
-                                    value: "Hacking",
-                                    subvalue: "Expert"),
-                                ColorsList(
-                                    color: 0xFF1e90ff,
-                                    value: "Node JS",
-                                    subvalue: "Advanced"),
-                                ColorsList(
-                                    color: 0xFFffa502,
-                                    value: "Python",
-                                    subvalue: "Beginner"),
-                                ColorsList(
-                                    color: 0xFFff7f50,
-                                    value: "SSR & CSR",
-                                    subvalue: "Master"),
-                                ColorsList(
-                                    color: 0xFFff4757,
-                                    value: "Ruby On Rails",
-                                    subvalue: "Advanced"),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: userProfile['skills'].length ?? 0,
+                                  itemBuilder: (context, i) {
+                                    return ColorsList(
+                                      color: colors[random.nextInt(6)],
+                                      value:
+                                          "${userProfile['skills'][i]['skill_type']}",
+                                      subvalue:
+                                          "${userProfile['skills'][i]['level'] == "beginner" ? AppTranslations.of(context).text("beginner") : userProfile['skills'][i]['level'] == "intermediate" ? AppTranslations.of(context).text("intermediate") : userProfile['skills'][i]['level'] == "advanced" ? AppTranslations.of(context).text("advanced") : userProfile['skills'][i]['level'] == "expert" ? AppTranslations.of(context).text("expert") : ""}",
+                                    );
+                                  },
+                                ),
                                 SizedBox(height: 20)
                               ])),
                       Positioned(
@@ -1089,23 +1093,23 @@ class ProfileView extends ProfileViewModel {
                                 ),
                                 SizedBox(height: 15),
                                 SocialList(
-                                  type: "fb",
+                                  type: "facebook",
                                   value: "www.facebook.com",
                                 ),
                                 SocialList(
-                                  type: "gh",
+                                  type: "instagram",
                                   value: "www.github.com",
                                 ),
                                 SocialList(
-                                  type: "ig",
+                                  type: "github",
                                   value: "www.instagram.com",
                                 ),
                                 SocialList(
-                                  type: "li",
+                                  type: "googleplus",
                                   value: "www.linkedin.com",
                                 ),
                                 SocialList(
-                                  type: "gp",
+                                  type: "linkedin",
                                   value: "www.google.com",
                                 ),
                                 SizedBox(height: 20)
