@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:paperflix_rg/config/config.dart';
+import 'package:paperflix_rg/helpers/navigation_animation.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
+import 'package:paperflix_rg/screens/edit_profile/edit_profile.dart';
 import 'package:paperflix_rg/screens/profile/widgets/colors_list.dart';
 import 'package:paperflix_rg/screens/profile/widgets/single_form.dart';
 import 'package:paperflix_rg/screens/profile/widgets/single_list.dart';
@@ -85,7 +87,14 @@ class ProfileView extends ProfileViewModel {
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 0, vertical: 10),
                                             textColor: Color(0xFF2dd573),
-                                            onPressed: () {},
+                                            onPressed: () => Navigator.push(
+                                                context,
+                                                NavigationRoute(
+                                                    enterPage: EditProfile(
+                                                  type: 0,
+                                                  avatar:
+                                                      "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                ))),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
@@ -289,7 +298,14 @@ class ProfileView extends ProfileViewModel {
                                                     BorderRadius.circular(10)),
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 15, vertical: 10),
-                                            onPressed: () {},
+                                            onPressed: () => Navigator.push(
+                                                context,
+                                                NavigationRoute(
+                                                    enterPage: EditProfile(
+                                                  type: 1,
+                                                  avatar:
+                                                      "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                ))),
                                             textColor: Color(0xFF2dd573),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -381,7 +397,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 2,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -493,7 +516,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 3,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -605,7 +635,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 4,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -717,7 +754,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 5,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -830,7 +874,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 6,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -943,7 +994,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 7,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -1039,7 +1097,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 8,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -1151,7 +1216,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 9,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -1262,7 +1334,14 @@ class ProfileView extends ProfileViewModel {
                                                     horizontal: 15,
                                                     vertical: 10),
                                                 textColor: Color(0xFF2dd573),
-                                                onPressed: () {},
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    NavigationRoute(
+                                                        enterPage: EditProfile(
+                                                      type: 10,
+                                                      avatar:
+                                                          "${imageUrl == null ? data['avatar'] : imageUrl}",
+                                                    ))),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.min,

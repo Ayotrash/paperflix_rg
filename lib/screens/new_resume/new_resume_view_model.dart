@@ -739,7 +739,8 @@ abstract class NewResumeViewModel extends State<NewResume> {
       });
     } else {
       if (socialList.toString().contains(_social['type'].toString())) {
-        toastMsg("${_social['type'][0].toUpperCase()}${_social['type'].substring(1)} already in your social.");
+        toastMsg(
+            "${_social['type'][0].toUpperCase()}${_social['type'].substring(1)} already in your social.");
       } else {
         if (socialLinkController.text.length > 0 && currentSocial.length > 0) {
           setState(() {
@@ -1084,7 +1085,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
     }
   }
 
-  Future<bool> willPopDialog(context) {
+  Future willPopDialog(context) async {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
