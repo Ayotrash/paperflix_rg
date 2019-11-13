@@ -4,8 +4,9 @@ import 'package:paperflix_rg/localization/app_translations.dart';
 class SingleList extends StatefulWidget {
   final String value, time, subvalue, image;
   final IconData icon;
-  final param1, param2;
-  final onDelete;
+  final Map data;
+  final param;
+  final onDelete, onEdit;
 
   SingleList(
       {this.icon,
@@ -13,9 +14,9 @@ class SingleList extends StatefulWidget {
       this.time,
       this.subvalue,
       this.onDelete,
-      this.param1,
-      this.param2,
-      this.image});
+      this.param,
+      this.image,
+      this.onEdit, this.data});
 
   @override
   _SingleListState createState() => _SingleListState();
@@ -91,11 +92,15 @@ class _SingleListState extends State<SingleList> {
               ),
             ),
             SizedBox(width: 10),
-            Icon(Icons.edit, color: Color(0xFF2dd573)),
+            IconButton(
+              icon: Icon(Icons.edit),
+              color: Color(0xFF2dd573),
+              onPressed: () => widget.onEdit(widget.data),
+            ),
           ],
         ),
         FlatButton(
-          onPressed: () => widget.onDelete(widget.param1, widget.param2),
+          onPressed: () => widget.onDelete(widget.param),
           textColor: Colors.red,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

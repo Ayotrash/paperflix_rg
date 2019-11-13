@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'dart:io';
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
-import 'dart:async';
-
+import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
@@ -21,6 +21,7 @@ import './new_resume.dart';
 abstract class NewResumeViewModel extends State<NewResume> {
   final db = Firestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  var uuid = new Uuid();
 
   ScrollController stepScroll = ScrollController();
   int currentStep = 0;
@@ -105,6 +106,18 @@ abstract class NewResumeViewModel extends State<NewResume> {
   bool outSchoolPresent = false;
   bool educationPresent = false;
   bool coursesPresent = false;
+
+  bool updateEmployment = false;
+  bool updateEducation = false;
+  bool updateOutSchoolActivities = false;
+  bool updateReferences = false;
+  bool updateCourses = false;
+
+  Map dataEmployment = Map();
+  Map dataEducation = Map();
+  Map dataOutSchoolActivities = Map();
+  Map dataReferences = Map();
+  Map dataCourses = Map();
 
   List levelSkills = [
     {"id": "beginner", "text": "Beginner"},
@@ -265,67 +278,58 @@ abstract class NewResumeViewModel extends State<NewResume> {
         gravity: Toast.BOTTOM);
   }
 
-  void removeEmployment(jobTitle, company) {
+  void removeEmployment(id) {
     setState(() {
-      employmentList.removeWhere((item) =>
-          item['job_title'] == jobTitle && item['company'] == company);
+      employmentList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Employment Success");
   }
 
-  void removeOutSchoolActivities(funtionTitle, organization) {
+  void removeOutSchoolActivities(id) {
     setState(() {
-      outSchoolActivitiesList.removeWhere((item) =>
-          item['function_title'] == funtionTitle &&
-          item['organization'] == organization);
+      outSchoolActivitiesList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Out School Activities Success");
   }
 
-  void removeEducation(university, degree) {
+  void removeEducation(id) {
     setState(() {
-      educationList.removeWhere((item) =>
-          item['university'] == university && item['degree'] == degree);
+      educationList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Education Success");
   }
 
-  void removeCourse(course, institution) {
+  void removeCourse(id) {
     setState(() {
-      coursesList.removeWhere((item) =>
-          item['course'] == course && item['institution'] == institution);
+      coursesList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Course Success");
   }
 
-  void removeReferences(fullname, company) {
+  void removeReferences(id) {
     setState(() {
-      referencesList.removeWhere(
-          (item) => item['fullname'] == fullname && item['company'] == company);
+      referencesList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Reference Success");
   }
 
-  void removeSkills(typeSkill, level) {
+  void removeSkills(id) {
     setState(() {
-      skillsList.removeWhere(
-          (item) => item['skill_type'] == typeSkill && item['level'] == level);
+      skillsList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Skill Success");
   }
 
-  void removeLanguages(language, level) {
+  void removeLanguages(id) {
     setState(() {
-      languagesList.removeWhere(
-          (item) => item['language'] == language && item['level'] == level);
+      languagesList.removeWhere((item) => item['id'] == id);
     });
     toastMsg("Delete Language Success");
   }
 
-  void removeSocial(type, link) {
+  void removeSocial(type) {
     setState(() {
-      socialList
-          .removeWhere((item) => item['type'] == type && item['link'] == link);
+      socialList.removeWhere((item) => item['type'] == type);
     });
     toastMsg("Delete Social Success");
   }
@@ -473,6 +477,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
           employmentCityController.text.length > 0 &&
           employmentDescriptionController.text.length > 0) {
         Map _employmentTemp = {
+          "id": uuid.v1(),
           "job_title": "${employmentJobTitleController.text}",
           "company": "${employmentCompanyController.text}",
           "city": "${employmentCityController.text}",
@@ -514,6 +519,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
           outSchoolCityController.text.length > 0 &&
           outSchoolDescriptionController.text.length > 0) {
         Map _outSchoolTemp = {
+          "id": uuid.v1(),
           "function_title": "${outSchoolFunctionTitleController.text}",
           "organization": "${outSchoolOrganizationController.text}",
           "city": "${outSchoolCityController.text}",
@@ -556,6 +562,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
           educationSocialActivitiesController.text.length > 0 &&
           educationDescriptionController.text.length > 0) {
         Map _educationTemp = {
+          "id": uuid.v1(),
           "university": "${educationUniversityController.text}",
           "degree": "${educationDegreeController.text}",
           "field_of_study": "${educationFieldOfStudyController.text}",
@@ -601,12 +608,14 @@ abstract class NewResumeViewModel extends State<NewResume> {
           referencesPhoneNumberController.text.length > 0 &&
           referencesDescriptionController.text.length > 0) {
         Map _referencesTemp = {
+          "id": uuid.v1(),
           "fullname": "${referencesFullnameController.text}",
           "company": "${referencesCompanyController.text}",
           "email": "${referencesEmailController.text}",
           "image":
               "${imageUrl ?? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"}",
-          "phone_number": "${referencesPhoneNumberController.text}",
+          "phone": "${referencesPhoneNumberController.text}",
+          "country_code": "$currentCountryCodePreferences",
           "description": "${referencesDescriptionController.text}",
         };
 
@@ -636,6 +645,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
       if (coursesTextController.text.length > 0 &&
           coursesInstitutionController.text.length > 0) {
         Map _coursesTemp = {
+          "id": uuid.v1(),
           "course": "${coursesTextController.text}",
           "institution": "${coursesInstitutionController.text}",
           "start_date": selectedStartDate.millisecondsSinceEpoch ?? null,
@@ -663,6 +673,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
 
   void onBtnAddSkills() {
     Map _skill = {
+      "id": uuid.v1(),
       "skill_type": "${skillsTypeSkillController.text}",
       "level": "$selectedLevel"
     };
@@ -690,6 +701,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
 
   void onBtnAddLanguages() {
     Map _language = {
+      "id": uuid.v1(),
       "language": "${languageTextController.text}",
       "level": "$selectedMastery"
     };
@@ -727,7 +739,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
       });
     } else {
       if (socialList.toString().contains(_social['type'].toString())) {
-        toastMsg("${socialLinkController.text} already in your social.");
+        toastMsg("${_social['type'][0].toUpperCase()}${_social['type'].substring(1)} already in your social.");
       } else {
         if (socialLinkController.text.length > 0 && currentSocial.length > 0) {
           setState(() {
@@ -765,6 +777,240 @@ abstract class NewResumeViewModel extends State<NewResume> {
     }
   }
 
+  void editEmployment(data) {
+    setState(() {
+      updateEmployment = true;
+      dataEmployment = data;
+      employmentJobTitleController.text = "${data['job_title']}";
+      employmentCompanyController.text = "${data['company']}";
+      employmentCityController.text = "${data['city']}";
+      employmentDescriptionController.text = "${data['description']}";
+      selectedStartDate =
+          DateTime.fromMillisecondsSinceEpoch(data['start_date']);
+      employmentPresent = data['present'];
+      selectedEndDate = data['present']
+          ? DateTime(2019)
+          : DateTime.fromMillisecondsSinceEpoch(data['end_date']);
+    });
+  }
+
+  void saveEditEmployment() {
+    if (employmentJobTitleController.text.length > 0 &&
+        employmentCompanyController.text.length > 0 &&
+        employmentCityController.text.length > 0 &&
+        employmentDescriptionController.text.length > 0) {
+      setState(() {
+        employmentList.forEach((item) {
+          if (item['id'] == dataEmployment['id']) {
+            Map _employmentTemp = {
+              "id": item['id'],
+              "job_title": "${employmentJobTitleController.text}",
+              "company": "${employmentCompanyController.text}",
+              "city": "${employmentCityController.text}",
+              "start_date": selectedStartDate.millisecondsSinceEpoch ?? null,
+              "end_date": employmentPresent
+                  ? null
+                  : selectedEndDate.millisecondsSinceEpoch ?? null,
+              "present": employmentPresent,
+              "description": "${employmentDescriptionController.text}",
+            };
+            employmentList.remove(item);
+            employmentList.add(_employmentTemp);
+          }
+        });
+        updateEmployment = false;
+        dataEmployment = Map();
+      });
+      print(employmentList);
+    }
+  }
+
+  void editEducation(data) {
+    setState(() {
+      updateEducation = true;
+      dataEducation = data;
+      educationUniversityController.text = "${data['university']}";
+      educationDegreeController.text = "${data['degree']}";
+      educationFieldOfStudyController.text = "${data['field_of_study']}";
+      educationDescriptionController.text = "${data['description']}";
+      educationSocialActivitiesController.text =
+          "${data['education_social_activities']}";
+      selectedStartDate =
+          DateTime.fromMillisecondsSinceEpoch(data['start_date']);
+      selectedEndDate = data['present']
+          ? DateTime(2019)
+          : DateTime.fromMillisecondsSinceEpoch(data['end_date']);
+      educationPresent = data['present'];
+    });
+  }
+
+  void saveEditEducation() {
+    if (educationUniversityController.text.length > 0 &&
+        educationDegreeController.text.length > 0 &&
+        educationFieldOfStudyController.text.length > 0 &&
+        educationSocialActivitiesController.text.length > 0 &&
+        educationDescriptionController.text.length > 0) {
+      setState(() {
+        educationList.forEach((item) {
+          if (item['id'] == dataEducation['id']) {
+            Map _educationTemp = {
+              "id": item['id'],
+              "university": "${educationUniversityController.text}",
+              "degree": "${educationDegreeController.text}",
+              "field_of_study": "${educationFieldOfStudyController.text}",
+              "start_date": selectedStartDate.millisecondsSinceEpoch ?? null,
+              "end_date": educationPresent
+                  ? null
+                  : selectedEndDate.millisecondsSinceEpoch ?? null,
+              "present": educationPresent,
+              "education_social_activities":
+                  "${educationSocialActivitiesController.text}",
+              "description": "${educationDescriptionController.text}",
+            };
+            educationList.remove(item);
+            educationList.add(_educationTemp);
+          }
+        });
+        updateEducation = false;
+        dataEducation = Map();
+      });
+      print(educationList);
+    }
+  }
+
+  void editOutSchoolActivities(data) {
+    setState(() {
+      updateOutSchoolActivities = true;
+      dataOutSchoolActivities = data;
+      outSchoolFunctionTitleController.text = "${data['function_title']}";
+      outSchoolOrganizationController.text = "${data['organization']}";
+      outSchoolCityController.text = "${data['city']}";
+      outSchoolDescriptionController.text = "${data['description']}";
+      selectedStartDate =
+          DateTime.fromMillisecondsSinceEpoch(data['start_date']);
+      selectedEndDate = data['present']
+          ? DateTime(2019)
+          : DateTime.fromMillisecondsSinceEpoch(data['end_date']);
+      outSchoolPresent = data['present'];
+    });
+  }
+
+  void saveEditOutSchoolActivities() {
+    if (outSchoolFunctionTitleController.text.length > 0 &&
+        outSchoolOrganizationController.text.length > 0 &&
+        outSchoolCityController.text.length > 0 &&
+        outSchoolDescriptionController.text.length > 0) {
+      setState(() {
+        outSchoolActivitiesList.forEach((item) {
+          if (item['id'] == dataOutSchoolActivities['id']) {
+            Map _outSchoolTemp = {
+              "id": item['id'],
+              "function_title": "${outSchoolFunctionTitleController.text}",
+              "organization": "${outSchoolOrganizationController.text}",
+              "city": "${outSchoolCityController.text}",
+              "start_date": selectedStartDate.millisecondsSinceEpoch ?? null,
+              "end_date": outSchoolPresent
+                  ? null
+                  : selectedEndDate.millisecondsSinceEpoch ?? null,
+              "present": outSchoolPresent,
+              "description": "${outSchoolDescriptionController.text}",
+            };
+            outSchoolActivitiesList.remove(item);
+            outSchoolActivitiesList.add(_outSchoolTemp);
+          }
+        });
+        updateOutSchoolActivities = false;
+        dataOutSchoolActivities = Map();
+      });
+      print(outSchoolActivitiesList);
+    }
+  }
+
+  void editReferences(data) {
+    setState(() {
+      updateReferences = true;
+      dataReferences = data;
+      referencesFullnameController.text = "${data['fullname']}";
+      referencesCompanyController.text = "${data['company']}";
+      referencesEmailController.text = "${data['email']}";
+      referencesPhoneNumberController.text = "${data['phone']}";
+      referencesDescriptionController.text = "${data['description']}";
+      imageUrl = "${data['image']}";
+    });
+  }
+
+  void saveEditReferences() {
+    if (referencesFullnameController.text.length > 0 &&
+        referencesCompanyController.text.length > 0 &&
+        referencesEmailController.text.length > 0 &&
+        referencesPhoneNumberController.text.length > 0 &&
+        referencesDescriptionController.text.length > 0) {
+      setState(() {
+        referencesList.forEach((item) {
+          if (item['id'] == dataReferences['id']) {
+            Map _referencesTemp = {
+              "id": item['id'],
+              "fullname": "${referencesFullnameController.text}",
+              "company": "${referencesCompanyController.text}",
+              "email": "${referencesEmailController.text}",
+              "image":
+                  "${imageUrl ?? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"}",
+              "phone": "${referencesPhoneNumberController.text}",
+              "description": "${referencesDescriptionController.text}",
+            };
+            referencesList.remove(item);
+            referencesList.add(_referencesTemp);
+          }
+        });
+        updateReferences = false;
+        dataReferences = Map();
+      });
+      print(referencesList);
+    }
+  }
+
+  void editCourse(data) {
+    setState(() {
+      updateCourses = true;
+      dataCourses = data;
+      coursesTextController.text = "${data['course']}";
+      coursesInstitutionController.text = "${data['institution']}";
+      selectedStartDate =
+          DateTime.fromMillisecondsSinceEpoch(data['start_date']);
+      selectedEndDate = data['present']
+          ? DateTime(2019)
+          : DateTime.fromMillisecondsSinceEpoch(data['end_date']);
+      coursesPresent = data['present'];
+    });
+  }
+
+  void saveEditCourse() {
+    if (coursesTextController.text.length > 0 &&
+        coursesInstitutionController.text.length > 0) {
+      setState(() {
+        coursesList.forEach((item) {
+          if (item['id'] == dataCourses['id']) {
+            Map _coursesTemp = {
+              "id": item['id'],
+              "course": "${coursesTextController.text}",
+              "institution": "${coursesInstitutionController.text}",
+              "start_date": selectedStartDate.millisecondsSinceEpoch ?? null,
+              "end_date": coursesPresent
+                  ? null
+                  : selectedEndDate.millisecondsSinceEpoch ?? null,
+              "present": coursesPresent,
+            };
+            coursesList.remove(item);
+            coursesList.add(_coursesTemp);
+          }
+        });
+        updateCourses = false;
+        dataCourses = Map();
+      });
+      print(coursesList);
+    }
+  }
+
   // void skipStep(_context) {
   //   if (currentStep < 4) {
   //     moveNext();
@@ -782,11 +1028,30 @@ abstract class NewResumeViewModel extends State<NewResume> {
       moveNext();
       setState(() {
         currentStep++;
+        addEmployment = false;
+        addEducation = false;
+        addCourses = false;
+        addReferences = false;
+        addSkills = false;
+        addLanguages = false;
+        addOutSchoolActivities = false;
+        addHobbies = false;
+        addSocial = false;
+
+        updateEmployment = false;
+        updateEducation = false;
+        updateOutSchoolActivities = false;
+        updateReferences = false;
+        updateCourses = false;
+
+        selectedStartDate = DateTime(2019);
+        selectedEndDate = DateTime(2019);
       });
-      // uploadData();
+      uploadData();
     } else {
       print("Current Step : (10) Max");
-      // willNextDialog(1, _context);
+      willNextDialog(1, _context);
+      toastMsg("Data Upload Success");
     }
   }
 
@@ -795,6 +1060,24 @@ abstract class NewResumeViewModel extends State<NewResume> {
       moveBack();
       setState(() {
         currentStep--;
+        addEmployment = false;
+        addEducation = false;
+        addCourses = false;
+        addReferences = false;
+        addSkills = false;
+        addLanguages = false;
+        addOutSchoolActivities = false;
+        addHobbies = false;
+        addSocial = false;
+
+        updateEmployment = false;
+        updateEducation = false;
+        updateOutSchoolActivities = false;
+        updateReferences = false;
+        updateCourses = false;
+
+        selectedStartDate = DateTime(2019);
+        selectedEndDate = DateTime(2019);
       });
     } else {
       print("Current Step : 0");
@@ -877,7 +1160,6 @@ abstract class NewResumeViewModel extends State<NewResume> {
                       NavigationRoute(
                           enterPage: Home(
                         firstname: firstnameController.text,
-                        avatar: this.widget.avatar,
                         gender: "${currentGender ?? this.widget.gender}",
                       )),
                       ModalRoute.withName('/Auth'));
@@ -889,19 +1171,41 @@ abstract class NewResumeViewModel extends State<NewResume> {
   }
 
   Future<void> uploadData() async {
-    toggleLoading(true);
+    // toggleLoading(true);
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      db
+          .collection("users")
+          .where("authentication_uid",
+              isEqualTo: "${prefs.getString("uidUser")}")
+          .snapshots()
+          .listen((data) {
+        if (data.documents.length > 0) {
+          print('docId: ${data.documents[0].documentID}');
+          updateFirestore(data);
+        } else {
+          print("error bos!");
+          // toggleLoading(false);
+        }
+        toggleLoading(false);
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void updateFirestore(data) {
     try {
       Map _temp = {
         "firstname": "${firstnameController.text ?? this.widget.firstname}",
-        "avatar": "${this.widget.avatar}",
         "lastname": "${lastnameController.text ?? this.widget.lastname}",
+        "avatar": this.widget.avatar,
         "email": "${emailController.text ?? this.widget.email}",
         "gender": "${currentGender ?? this.widget.gender}",
-        "birth_date": selectedBirthDate.millisecondsSinceEpoch,
+        "bod": selectedBirthDate.millisecondsSinceEpoch,
         "place_of_birth": "${placeOfBirthController.text ?? ""}",
         "country_code": "${currentCountryCode ?? ""}",
-        "phone_number": "${phoneNumberController.text ?? ""}",
+        "phone": "${phoneNumberController.text ?? ""}",
         "job_title": "${jobTitleController.text ?? ""}",
         "country": "${countryController.text ?? ""}",
         "province": "${provinceController.text ?? ""}",
@@ -915,39 +1219,25 @@ abstract class NewResumeViewModel extends State<NewResume> {
         "skills": skillsList ?? [],
         "languages": languagesList ?? [],
         "out_school_activities": outSchoolActivitiesList ?? [],
+        "references": referencesList ?? [],
         "hobbies": hobbiesList ?? [],
         "courses": coursesList ?? [],
         "socials": socialList ?? []
       };
       db
-          .collection("users")
-          .where("authentication_uid",
-              isEqualTo: "${prefs.getString("uidUser")}")
-          .snapshots()
-          .listen((data) {
-        if (data.documents.length > 0) {
-          print('docId: ${data.documents[0].documentID}');
-          db
-              .collection('users')
-              .document('${data.documents[0].documentID}')
-              .updateData(Map<String, dynamic>.from(_temp))
-              .then((res) {
-            print("Update ${data.documents[0]['email']} Success");
-            toastMsg("Data Upload Success");
+          .collection('users')
+          .document('${data.documents[0].documentID}')
+          .updateData(Map<String, dynamic>.from(_temp))
+          .then((res) {
+        print("Update ${data.documents[0]['email']} Success");
 
-            storage.setItem('userProfile', Map<String, dynamic>.from(_temp));
-            print(storage.getItem('userProfile'));
-            toggleLoading(false);
-          }).catchError((err) {
-            print(err);
-          });
-        } else {
-          print("error bos!");
-          // toggleLoading(false);
-        }
+        storage.setItem('userProfile', Map<String, dynamic>.from(_temp));
+        print(storage.getItem('userProfile'));
+      }).catchError((err) {
+        print(err);
       });
     } catch (e) {
-      print(e);
+      print(e.toString());
     }
   }
 
@@ -1015,11 +1305,10 @@ abstract class NewResumeViewModel extends State<NewResume> {
         emailController.text = _userProfile['email'] ?? this.widget.email;
         currentGender = _userProfile['gender'] ?? this.widget.gender;
         selectedBirthDate = DateTime.fromMillisecondsSinceEpoch(
-            _userProfile['birth_date'] ??
-                DateTime(2000).millisecondsSinceEpoch);
+            _userProfile['bod'] ?? DateTime(2000).millisecondsSinceEpoch);
         placeOfBirthController.text = _userProfile['place_of_birth'] ?? "";
         currentCountryCode = _userProfile['country_code'] ?? "";
-        phoneNumberController.text = _userProfile['phone_number'] ?? "";
+        phoneNumberController.text = _userProfile['phone'] ?? "";
         jobTitleController.text = _userProfile['job_title'] ?? "";
         countryController.text = _userProfile['country'] ?? "";
         provinceController.text = _userProfile['province'] ?? "";
@@ -1035,6 +1324,7 @@ abstract class NewResumeViewModel extends State<NewResume> {
         outSchoolActivitiesList =
             _userProfile['out_school_activities'] ?? List();
         hobbiesList = _userProfile['hobbies'] ?? List();
+        referencesList = _userProfile['references'] ?? List();
         coursesList = _userProfile['courses'] ?? List();
         socialList = _userProfile['socials'] ?? List();
       });

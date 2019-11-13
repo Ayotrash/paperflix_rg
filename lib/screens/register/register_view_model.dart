@@ -189,7 +189,7 @@ abstract class RegisterViewModel extends State<Register> {
             ? this.widget.gender == 0
                 ? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6"
                 : "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"
-            : "$imageUrl",
+            : imageUrl,
         gender: this.widget.gender == 0 ? "female" : "male",
         password: bcrypt,
         deviceInfo: deviceInfo);
@@ -223,20 +223,6 @@ abstract class RegisterViewModel extends State<Register> {
       await prefs.setBool('isLogin', true);
       print(user.uid);
 
-      Map<String, dynamic> _temp = {
-        "firstname": "${firstnameController.text}",
-        "lastname": "${lastnameController.text}",
-        "email": "${emailController.text}",
-        "gender": this.widget.gender == 0 ? "female" : "male",
-        "avatar": imageUrl == null
-            ? this.widget.gender == 0
-                ? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6"
-                : "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"
-            : imageUrl,
-      };
-
-      await storage.setItem('userProfile', Map<String, dynamic>.from(_temp));
-
       //clean form
       toggleLoading();
       setState(() {
@@ -248,15 +234,15 @@ abstract class RegisterViewModel extends State<Register> {
           context,
           NavigationRoute(
               enterPage: NewResume(
+            firstname: "${firstnameController.text}",
+            lastname: "${lastnameController.text}",
+            email: "${emailController.text}",
+            gender: this.widget.gender == 0 ? "female" : "male",
             avatar: imageUrl == null
                 ? this.widget.gender == 0
                     ? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572640034110.jpg?alt=media&token=f808358e-67e0-4edf-a147-eabc98abacd6"
                     : "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"
                 : imageUrl,
-            firstname: "${firstnameController.text}",
-            lastname: "${lastnameController.text}",
-            email: "${emailController.text}",
-            gender: this.widget.gender == 0 ? "female" : "male",
           )),
           ModalRoute.withName('/Auth'));
     }).catchError((err) {

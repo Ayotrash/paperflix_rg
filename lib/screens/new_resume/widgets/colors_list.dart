@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ColorsList extends StatelessWidget {
   final int color;
-  final String value, subvalue, param1, param2;
+  final String value, subvalue;
+  final param;
   final onDelete;
 
   ColorsList(
@@ -10,8 +11,7 @@ class ColorsList extends StatelessWidget {
       this.value,
       this.subvalue,
       this.onDelete,
-      this.param1,
-      this.param2});
+      this.param});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class ColorsList extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.close),
-            onPressed: () => onDelete(param1, param2),
+            onPressed: () => onDelete(param),
           )
         ],
       ),

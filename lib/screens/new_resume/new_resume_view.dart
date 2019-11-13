@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
-import 'package:loading/loading.dart';
 import 'package:paperflix_rg/localization/app_translations.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/colors_list.dart';
 import 'package:paperflix_rg/screens/new_resume/widgets/select_suggestion.dart';
@@ -854,30 +852,36 @@ class NewResumeView extends NewResumeViewModel {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          SizedBox(height: 15),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: employmentList.length,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, i) {
-                                              return SingleList(
-                                                icon: Icons.work,
-                                                value:
-                                                    "${employmentList[i]['job_title']} at ${employmentList[i]['company']}",
-                                                time:
-                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(employmentList[i]['start_date']))} - ${employmentList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(employmentList[i]['end_date']))}",
-                                                subvalue:
-                                                    "${employmentList[i]['description']}",
-                                                param1:
-                                                    "${employmentList[i]['job_title']}",
-                                                param2:
-                                                    "${employmentList[i]['company']}",
-                                                onDelete: removeEmployment,
-                                              );
-                                            },
-                                          ),
-                                          addEmployment
+                                          !updateEmployment
+                                              ? SizedBox(height: 15)
+                                              : SizedBox(),
+                                          !updateEmployment
+                                              ? ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount:
+                                                      employmentList.length,
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
+                                                  itemBuilder: (context, i) {
+                                                    return SingleList(
+                                                      icon: Icons.work,
+                                                      value:
+                                                          "${employmentList[i]['job_title']} at ${employmentList[i]['company']}",
+                                                      time:
+                                                          "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(employmentList[i]['start_date']))} - ${employmentList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(employmentList[i]['end_date']))}",
+                                                      subvalue:
+                                                          "${employmentList[i]['description']}",
+                                                      param: employmentList[i]
+                                                          ['id'],
+                                                      data: employmentList[i],
+                                                      onDelete:
+                                                          removeEmployment,
+                                                      onEdit: editEmployment,
+                                                    );
+                                                  },
+                                                )
+                                              : Container(),
+                                          addEmployment || updateEmployment
                                               ? Container(
                                                   width: screenSize.width,
                                                   child: Column(
@@ -1076,7 +1080,7 @@ class NewResumeView extends NewResumeViewModel {
                                                     ],
                                                   ))
                                               : Container(),
-                                          addEmployment
+                                          addEmployment || updateEmployment
                                               ? SizedBox(height: 20)
                                               : SizedBox(height: 10),
                                           Center(
@@ -1085,14 +1089,15 @@ class NewResumeView extends NewResumeViewModel {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),
-                                              onPressed: () =>
-                                                  onBtnAddEmployment(),
+                                              onPressed: () => updateEmployment
+                                                  ? saveEditEmployment()
+                                                  : onBtnAddEmployment(),
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 15, horizontal: 20),
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("employment")}",
+                                                "+ ${addEmployment || updateEmployment ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("employment")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -1112,30 +1117,35 @@ class NewResumeView extends NewResumeViewModel {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          SizedBox(height: 15),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: educationList.length,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, i) {
-                                              return SingleList(
-                                                icon: Icons.school,
-                                                value:
-                                                    "${educationList[i]['university']}",
-                                                time:
-                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(educationList[i]['start_date']))} - ${educationList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(educationList[i]['end_date']))}",
-                                                subvalue:
-                                                    "${educationList[i]['degree']}",
-                                                param1:
-                                                    "${educationList[i]['university']}",
-                                                param2:
-                                                    "${educationList[i]['degree']}",
-                                                onDelete: removeEducation,
-                                              );
-                                            },
-                                          ),
-                                          addEducation
+                                          updateEducation
+                                              ? SizedBox()
+                                              : SizedBox(height: 15),
+                                          updateEducation
+                                              ? Container()
+                                              : ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount:
+                                                      educationList.length,
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
+                                                  itemBuilder: (context, i) {
+                                                    return SingleList(
+                                                      icon: Icons.school,
+                                                      value:
+                                                          "${educationList[i]['university']}",
+                                                      time:
+                                                          "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(educationList[i]['start_date']))} - ${educationList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(educationList[i]['end_date']))}",
+                                                      subvalue:
+                                                          "${educationList[i]['degree']}",
+                                                      param: educationList[i]
+                                                          ['id'],
+                                                      data: educationList[i],
+                                                      onDelete: removeEducation,
+                                                      onEdit: editEducation,
+                                                    );
+                                                  },
+                                                ),
+                                          addEducation || updateEducation
                                               ? Container(
                                                   width: screenSize.width,
                                                   child: Column(
@@ -1334,7 +1344,7 @@ class NewResumeView extends NewResumeViewModel {
                                                     ],
                                                   ))
                                               : Container(),
-                                          addEducation
+                                          addEducation || updateEducation
                                               ? SizedBox(height: 20)
                                               : SizedBox(height: 10),
                                           Center(
@@ -1343,14 +1353,15 @@ class NewResumeView extends NewResumeViewModel {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),
-                                              onPressed: () =>
-                                                  onBtnAddEducation(),
+                                              onPressed: () => updateEducation
+                                                  ? saveEditEducation()
+                                                  : onBtnAddEducation(),
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 15, horizontal: 20),
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education-v2")}",
+                                                "+ ${addEducation || updateEducation ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("education-v2")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -1384,10 +1395,7 @@ class NewResumeView extends NewResumeViewModel {
                                                     "${skillsList[i]['level'] == "beginner" ? AppTranslations.of(context).text("beginner") : skillsList[i]['level'] == "intermediate" ? AppTranslations.of(context).text("intermediate") : skillsList[i]['level'] == "advanced" ? AppTranslations.of(context).text("advanced") : skillsList[i]['level'] == "expert" ? AppTranslations.of(context).text("expert") : ""}",
                                                 color:
                                                     colors[random.nextInt(6)],
-                                                param1:
-                                                    "${skillsList[i]['skill_type']}",
-                                                param2:
-                                                    "${skillsList[i]['level']}",
+                                                param: skillsList[i]['id'],
                                                 onDelete: removeSkills,
                                               );
                                             },
@@ -1468,7 +1476,7 @@ class NewResumeView extends NewResumeViewModel {
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills-v2")}",
+                                                "+ ${addSkills ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("skills-v2")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -1488,32 +1496,43 @@ class NewResumeView extends NewResumeViewModel {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          SizedBox(height: 15),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount:
-                                                outSchoolActivitiesList.length,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, i) {
-                                              return SingleList(
-                                                icon: Icons.directions_run,
-                                                value:
-                                                    "${outSchoolActivitiesList[i]['function_title']} at ${outSchoolActivitiesList[i]['organization']}",
-                                                time:
-                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(outSchoolActivitiesList[i]['start_date']))} - ${outSchoolActivitiesList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(outSchoolActivitiesList[i]['end_date']))}",
-                                                subvalue:
-                                                    "${outSchoolActivitiesList[i]['description']}",
-                                                param1:
-                                                    "${outSchoolActivitiesList[i]['function_title']}",
-                                                param2:
-                                                    "${outSchoolActivitiesList[i]['organization']}",
-                                                onDelete:
-                                                    removeOutSchoolActivities,
-                                              );
-                                            },
-                                          ),
-                                          addOutSchoolActivities
+                                          updateOutSchoolActivities
+                                              ? SizedBox()
+                                              : SizedBox(height: 15),
+                                          updateOutSchoolActivities
+                                              ? SizedBox()
+                                              : ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount:
+                                                      outSchoolActivitiesList
+                                                          .length,
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
+                                                  itemBuilder: (context, i) {
+                                                    return SingleList(
+                                                      icon:
+                                                          Icons.directions_run,
+                                                      value:
+                                                          "${outSchoolActivitiesList[i]['function_title']} at ${outSchoolActivitiesList[i]['organization']}",
+                                                      time:
+                                                          "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(outSchoolActivitiesList[i]['start_date']))} - ${outSchoolActivitiesList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(outSchoolActivitiesList[i]['end_date']))}",
+                                                      subvalue:
+                                                          "${outSchoolActivitiesList[i]['description']}",
+                                                      param:
+                                                          outSchoolActivitiesList[
+                                                              i]['id'],
+                                                      data:
+                                                          outSchoolActivitiesList[
+                                                              i],
+                                                      onDelete:
+                                                          removeOutSchoolActivities,
+                                                      onEdit:
+                                                          editOutSchoolActivities,
+                                                    );
+                                                  },
+                                                ),
+                                          addOutSchoolActivities ||
+                                                  updateOutSchoolActivities
                                               ? Container(
                                                   width: screenSize.width,
                                                   child: Column(
@@ -1712,7 +1731,8 @@ class NewResumeView extends NewResumeViewModel {
                                                     ],
                                                   ))
                                               : Container(),
-                                          addOutSchoolActivities
+                                          addOutSchoolActivities ||
+                                                  updateOutSchoolActivities
                                               ? SizedBox(height: 20)
                                               : SizedBox(height: 10),
                                           Center(
@@ -1722,13 +1742,15 @@ class NewResumeView extends NewResumeViewModel {
                                                       BorderRadius.circular(
                                                           30)),
                                               onPressed: () =>
-                                                  onBtnAddOutSchool(),
+                                                  updateOutSchoolActivities
+                                                      ? saveEditOutSchoolActivities()
+                                                      : onBtnAddOutSchool(),
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 15, horizontal: 20),
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("out-school-activities")}",
+                                                "+ ${addOutSchoolActivities || updateOutSchoolActivities ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("out-school-activities")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -1762,10 +1784,7 @@ class NewResumeView extends NewResumeViewModel {
                                                     "${languagesList[i]['level'] == "beginner" ? AppTranslations.of(context).text("beginner") : languagesList[i]['level'] == "conversational" ? AppTranslations.of(context).text("conversational") : languagesList[i]['level'] == "fluent" ? AppTranslations.of(context).text("fluent") : languagesList[i]['level'] == "native" ? AppTranslations.of(context).text("native") : ""}",
                                                 color:
                                                     colors[random.nextInt(6)],
-                                                param1:
-                                                    "${languagesList[i]['language']}",
-                                                param2:
-                                                    "${languagesList[i]['level']}",
+                                                param: languagesList[i]['id'],
                                                 onDelete: removeLanguages,
                                               );
                                             },
@@ -1846,7 +1865,7 @@ class NewResumeView extends NewResumeViewModel {
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("languages")}",
+                                                "+ ${addLanguages ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("languages")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -1875,6 +1894,7 @@ class NewResumeView extends NewResumeViewModel {
                                             itemBuilder: (context, i) {
                                               return CustomChip(
                                                 "${hobbiesList[i]}",
+                                                expand: true,
                                                 onDelete: removeHobbies,
                                               );
                                             },
@@ -1915,7 +1935,7 @@ class NewResumeView extends NewResumeViewModel {
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("hobby")}",
+                                                "+ ${addHobbies ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("hobby")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -1935,31 +1955,36 @@ class NewResumeView extends NewResumeViewModel {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          SizedBox(height: 15),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: referencesList.length,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, i) {
-                                              return SingleList(
-                                                image:
-                                                    "${referencesList[i]['image'] ?? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"}",
-                                                value:
-                                                    "${referencesList[i]['fullname']}",
-                                                time:
-                                                    "${referencesList[i]['company']}",
-                                                param1:
-                                                    "${referencesList[i]['fullname']}",
-                                                param2:
-                                                    "${referencesList[i]['company']}",
-                                                onDelete: removeReferences,
-                                              );
-                                            },
-                                          ),
-                                          !addReferences
-                                              ? Container()
-                                              : Container(
+                                          updateReferences
+                                              ? SizedBox()
+                                              : SizedBox(height: 15),
+                                          updateReferences
+                                              ? SizedBox()
+                                              : ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount:
+                                                      referencesList.length,
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
+                                                  itemBuilder: (context, i) {
+                                                    return SingleList(
+                                                      image:
+                                                          "${referencesList[i]['image'] ?? "https://firebasestorage.googleapis.com/v0/b/paperflix-company.appspot.com/o/avatars%2Fimage_cropper_1572639988980.jpg?alt=media&token=5ab82802-bb96-4c7d-8b26-647c55e82aa7"}",
+                                                      value:
+                                                          "${referencesList[i]['fullname']}",
+                                                      time:
+                                                          "${referencesList[i]['company']}",
+                                                      param: referencesList[i]
+                                                          ['id'],
+                                                      data: referencesList[i],
+                                                      onDelete:
+                                                          removeReferences,
+                                                      onEdit: editReferences,
+                                                    );
+                                                  },
+                                                ),
+                                          addReferences || updateReferences
+                                              ? Container(
                                                   width: screenSize.width,
                                                   child: Column(
                                                       crossAxisAlignment:
@@ -2092,8 +2117,9 @@ class NewResumeView extends NewResumeViewModel {
                                                           controller:
                                                               referencesDescriptionController,
                                                         )
-                                                      ])),
-                                          addReferences
+                                                      ]))
+                                              : Container(),
+                                          addReferences || updateReferences
                                               ? SizedBox(height: 20)
                                               : SizedBox(height: 10),
                                           Center(
@@ -2102,14 +2128,15 @@ class NewResumeView extends NewResumeViewModel {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),
-                                              onPressed: () =>
-                                                  onBtnAddReferences(),
+                                              onPressed: () => updateReferences
+                                                  ? saveEditReferences()
+                                                  : onBtnAddReferences(),
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 15, horizontal: 20),
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("references")}",
+                                                "+ ${addReferences || updateReferences ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("references")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -2129,28 +2156,32 @@ class NewResumeView extends NewResumeViewModel {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          SizedBox(height: 15),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: coursesList.length,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, i) {
-                                              return SingleList(
-                                                icon: Icons.flag,
-                                                value:
-                                                    "${coursesList[i]['course']} at ${coursesList[i]['institution']}",
-                                                time:
-                                                    "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(coursesList[i]['start_date']))} - ${coursesList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(coursesList[i]['end_date']))}",
-                                                param1:
-                                                    "${coursesList[i]['course']}",
-                                                param2:
-                                                    "${coursesList[i]['institution']}",
-                                                onDelete: removeCourse,
-                                              );
-                                            },
-                                          ),
-                                          addCourses
+                                          updateCourses
+                                              ? SizedBox()
+                                              : SizedBox(height: 15),
+                                          updateCourses
+                                              ? SizedBox()
+                                              : ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount: coursesList.length,
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
+                                                  itemBuilder: (context, i) {
+                                                    return SingleList(
+                                                      icon: Icons.flag,
+                                                      value:
+                                                          "${coursesList[i]['course']} at ${coursesList[i]['institution']}",
+                                                      time:
+                                                          "${DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(coursesList[i]['start_date']))} - ${coursesList[i]['present'] ? AppTranslations.of(context).text("present") : DateFormat('MMMM yyyy').format(DateTime.fromMillisecondsSinceEpoch(coursesList[i]['end_date']))}",
+                                                      param: coursesList[i]
+                                                          ['id'],
+                                                      data: coursesList[i],
+                                                      onDelete: removeCourse,
+                                                      onEdit: editCourse,
+                                                    );
+                                                  },
+                                                ),
+                                          addCourses || updateCourses
                                               ? Container(
                                                   width: screenSize.width,
                                                   child: Column(
@@ -2331,7 +2362,7 @@ class NewResumeView extends NewResumeViewModel {
                                                     ],
                                                   ))
                                               : Container(),
-                                          addCourses
+                                          addCourses || updateCourses
                                               ? SizedBox(height: 20)
                                               : SizedBox(height: 10),
                                           Center(
@@ -2340,14 +2371,15 @@ class NewResumeView extends NewResumeViewModel {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),
-                                              onPressed: () =>
-                                                  onBtnAddCourses(),
+                                              onPressed: () => updateCourses
+                                                  ? saveEditCourse()
+                                                  : onBtnAddCourses(),
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 15, horizontal: 20),
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("courses")}",
+                                                "+ ${addCourses || updateCourses ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("courses")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -2455,7 +2487,7 @@ class NewResumeView extends NewResumeViewModel {
                                               color: Color(0xFF2dd573),
                                               textColor: Colors.white,
                                               child: Text(
-                                                "+ ${AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("socials")}",
+                                                "+ ${addSocial ? AppTranslations.of(context).text("save") : AppTranslations.of(context).text("add")} ${AppTranslations.of(context).text("socials")}",
                                                 style: TextStyle(
                                                     fontFamily: "SFP_Text",
                                                     fontSize: 16,
@@ -2513,21 +2545,23 @@ class NewResumeView extends NewResumeViewModel {
                           onPressed: () => isLoading ? {} : changeStep(context),
                           color: Color(0xFF2dd573),
                           textColor: Colors.white,
-                          child: isLoading
-                              ? Center(
-                                  child: Loading(
-                                      indicator: BallSpinFadeLoaderIndicator(),
-                                      size: 20.0))
-                              : Text(
-                                  currentStep < 10
-                                      ? "${AppTranslations.of(context).text("next").toUpperCase()}"
-                                      : "${AppTranslations.of(context).text("finish").toUpperCase()}",
-                                  style: TextStyle(
-                                      letterSpacing: 1,
-                                      fontFamily: "SFP_Text",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w900),
-                                ),
+                          child:
+                              // isLoading
+                              //     ? Center(
+                              //         child: Loading(
+                              //             indicator: BallSpinFadeLoaderIndicator(),
+                              //             size: 20.0))
+                              //     :
+                              Text(
+                            currentStep < 10
+                                ? "${AppTranslations.of(context).text("next").toUpperCase()}"
+                                : "${AppTranslations.of(context).text("finish").toUpperCase()}",
+                            style: TextStyle(
+                                letterSpacing: 1,
+                                fontFamily: "SFP_Text",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900),
+                          ),
                         ),
                       ),
                     )

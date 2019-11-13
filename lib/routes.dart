@@ -3,6 +3,7 @@ import 'package:paperflix_rg/screens/authentication/authentication.dart';
 import 'package:paperflix_rg/screens/choose_gender/choose_gender.dart';
 import 'package:paperflix_rg/screens/choose_template/choose_template.dart';
 import 'package:paperflix_rg/screens/custom_template/custom_template.dart';
+import 'package:paperflix_rg/screens/edit_profile/edit_profile.dart';
 import 'package:paperflix_rg/screens/home/home.dart';
 import 'package:paperflix_rg/screens/premium/premium.dart';
 import 'package:paperflix_rg/screens/profile/profile.dart';
@@ -19,4 +20,5 @@ final Map<String, WidgetBuilder> routes = {
   '/Premium': (BuildContext context) => Premium(),
   '/NewResume': (BuildContext context) => NewResume(),
   '/Profile': (BuildContext context) => Profile(),
+  '/EditProfile': (BuildContext context) => EditProfile(),
 };

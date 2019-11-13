@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class SocialList extends StatelessWidget {
   final String type, value;
-  final onEdit, onDelete;
+  final onDelete;
 
-  SocialList({this.type, this.value, this.onDelete, this.onEdit});
+  SocialList({this.type, this.value, this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -97,13 +97,15 @@ class SocialList extends StatelessWidget {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () => onDelete(type),
-              child: Icon(
-                Icons.close,
-                color: Color(0xFF2f3542),
-              ),
-            ),
+            onDelete != null
+                ? GestureDetector(
+                    onTap: () => onDelete(type),
+                    child: Icon(
+                      Icons.close,
+                      color: Color(0xFF2f3542),
+                    ),
+                  )
+                : Container(),
           ],
         ),
         Divider(height: 25),

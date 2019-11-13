@@ -7,7 +7,6 @@ import 'package:paperflix_rg/localization/application.dart';
 import 'package:paperflix_rg/routes.dart';
 import 'package:paperflix_rg/screens/authentication/authentication.dart';
 import 'package:paperflix_rg/screens/home/home.dart';
-import 'package:paperflix_rg/screens/new_resume/new_resume.dart';
 import 'package:paperflix_rg/widgets/without_resume_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,7 +48,7 @@ class _MainAppState extends State<MainApp> {
       print(_userProfile);
       if (_userProfile != {}) {
         if (_userProfile['place_of_birth'].length <= 0 ||
-            _userProfile['phone_number'].length <= 0 ||
+            _userProfile['phone'].length <= 0 ||
             _userProfile['job_title'].length <= 0 ||
             _userProfile['country'].length <= 0 ||
             _userProfile['province'].length <= 0 ||
@@ -109,10 +108,9 @@ class _MainAppState extends State<MainApp> {
         const Locale('en', ''),
         const Locale('id', ''),
       ],
-      // home: !isLogin
-      //     ? Authentication()
-      //     : isLogin && !isFillResume ? WithoutResumeBanner() : Home(),
-      home: NewResume(),
+      home: !isLogin
+          ? Authentication()
+          : isLogin && !isFillResume ? WithoutResumeBanner() : Home(),
       routes: routes,
     );
   }

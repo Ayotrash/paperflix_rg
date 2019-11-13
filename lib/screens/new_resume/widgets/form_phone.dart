@@ -32,26 +32,30 @@ class _FormPhoneState extends State<FormPhone> {
 
   List<DropdownMenuItem<Map>> getDropDownMenuItems() {
     List<DropdownMenuItem<Map>> items = List();
-    db.collection("countries_code").getDocuments().then((data) {
-      if (data.documents.length > 0) {
-        print(data.documents[0].data);
-        for (var country in data.documents) {
-          items.add(new DropdownMenuItem(
-              value: country.data,
-              child: new Text(
-                "+${country.data['code']}",
-                style:
-                    TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-              )));
+    try {
+      db.collection("countries_code").getDocuments().then((data) {
+        if (data.documents.length > 0) {
+          print(data.documents[0].data);
+          for (var country in data.documents) {
+            items.add(new DropdownMenuItem(
+                value: country.data,
+                child: new Text(
+                  "+${country.data['code']}",
+                  style: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                )));
+          }
+          setState(() {
+            currentCode = data.documents[0].data;
+            widget.onChange("+${data.documents[0].data['code']}");
+          });
+        } else {
+          print("Error fetch countries_code");
         }
-        setState(() {
-          currentCode = data.documents[0].data;
-          widget.onChange("+${data.documents[0].data['code']}");
-        });
-      } else {
-        print("Error fetch countries_code");
-      }
-    });
+      });
+    } catch (e) {
+      print(e.toString());
+    }
 
     return items;
   }

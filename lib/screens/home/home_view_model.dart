@@ -6,9 +6,6 @@ import './home.dart';
 
 abstract class HomeViewModel extends State<Home> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  bool profileImage = false;
-  int gender = 1;
-  Map userProfile = Map();
 
   Future<void> signOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -22,23 +19,7 @@ abstract class HomeViewModel extends State<Home> {
 
   @override
   void initState() {
-    storage.ready.then((_) {
-      userProfile = storage.getItem('userProfile');
-      if (userProfile['avatar'] != null) {
-        profileImage = true;
-      } else {
-        profileImage = false;
-      }
-      if (userProfile['gender'] == "male") {
-        gender = 1;
-      } else {
-        gender = 0;
-      }
-    });
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      print(profileImage);
-      print(gender);
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {});
   }
 }

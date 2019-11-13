@@ -56,7 +56,7 @@ abstract class AuthenticationViewModel extends State<Authentication> {
             .signInWithEmailAndPassword(
                 email: emailController.text, password: hash)
             .then((AuthResult result) async {
-          //declare
+          //
           SharedPreferences prefs = await SharedPreferences.getInstance();
           FirebaseUser user = result.user;
 
@@ -78,7 +78,7 @@ abstract class AuthenticationViewModel extends State<Authentication> {
 
           //Navigator push
           if (!data.containsKey('place_of_birth') ||
-              !data.containsKey('phone_number') ||
+              !data.containsKey('phone') ||
               !data.containsKey('job_title') ||
               !data.containsKey('country') ||
               !data.containsKey('province') ||
@@ -88,7 +88,7 @@ abstract class AuthenticationViewModel extends State<Authentication> {
               !data.containsKey('education') ||
               !data.containsKey('skills') ||
               data['place_of_birth'].length <= 0 ||
-              data['phone_number'].length <= 0 ||
+              data['phone'].length <= 0 ||
               data['job_title'].length <= 0 ||
               data['country'].length <= 0 ||
               data['province'].length <= 0 ||
@@ -107,9 +107,8 @@ abstract class AuthenticationViewModel extends State<Authentication> {
             Navigator.of(context).pushAndRemoveUntil(
                 NavigationRoute(
                     enterPage: Home(
-                  firstname: data['firstname'] ?? "",
-                  avatar: data['avatar'] ?? null,
-                  gender: data['gender'] ?? 0,
+                  firstname: data['firstname'] == null ? "" : "Anonim",
+                  gender: data['gender'] == 'male' ? "male" : 'female',
                 )),
                 ModalRoute.withName('/Auth'));
           }
